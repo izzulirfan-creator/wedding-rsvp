@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aiman & Sarah | Wedding Invitation</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- COVER -->
+    <section class="cover">
+
+        <div class="cover-content">
+
+            <p class="small-text">
+                THE WEDDING OF
+            </p>
+
+            <h1>
+                Aiman & Sarah
+            </h1>
+
+            <p>
+                31 MAY 2026
+            </p>
+
+            <button onclick="openInvitation()">
+                OPEN INVITATION
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN INVITATION -->
+    <main id="invitation">
+
+        <!-- INTRO -->
+        <section class="section">
+
+            <p>With joyful hearts</p>
+
+            <h2>
+                We invite you<br>
+                to celebrate with us
+            </h2>
+
+            <p>
+                Join us as we begin our new journey together.
+            </p>
+
+        </section>
+
+
+        <!-- COUPLE -->
+        <section class="section">
+
+            <p>THE HAPPY COUPLE</p>
+
+            <h2>
+                Aiman<br>
+                &<br>
+                Sarah
+            </h2>
+
+        </section>
+
+
+        <!-- EVENT -->
+        <section class="section">
+
+            <p>WEDDING RECEPTION</p>
+
+            <h2>
+                31 May 2026
+            </h2>
+
+            <p>
+                11:00 AM – 4:00 PM
+            </p>
+
+            <p>
+                Victoria Hall<br>
+                Shah Alam
+            </p>
+
+            <a
+                class="button"
+                href="https://www.google.com/maps/search/?api=1&query=Victoria+Hall+Shah+Alam"
+                target="_blank">
+                VIEW LOCATION
+            </a>
+
+            <a
+                class="button calendar-button"
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Aiman%20%26%20Sarah%20Wedding&dates=20260531T030000Z/20260531T080000Z&details=We%20would%20love%20to%20celebrate%20with%20you!&location=Victoria%20Hall%2C%20Shah%20Alam"
+                target="_blank">
+                SAVE THE DATE
+            </a>
+
+        </section>
+
+
+        <!-- COUNTDOWN -->
+        <section class="section countdown-section">
+
+            <p>COUNTDOWN TO OUR DAY</p>
+
+            <h2>
+                Counting down to forever
+            </h2>
+
+            <div id="countdown">
+
+                <div>
+                    <span id="days">0</span>
+                    <small>DAYS</small>
+                </div>
+
+                <div>
+                    <span id="hours">0</span>
+                    <small>HOURS</small>
+                </div>
+
+                <div>
+                    <span id="minutes">0</span>
+                    <small>MINUTES</small>
+                </div>
+
+                <div>
+                    <span id="seconds">0</span>
+                    <small>SECONDS</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GALLERY -->
+        <section class="section gallery-section">
+
+            <p>OUR MOMENTS</p>
+
+            <h2>
+                A little glimpse<br>
+                of our journey
+            </h2>
+
+            <div class="gallery">
+
+                <div class="gallery-item">
+                    <img
+                        src="images/image 1.jpg"
+                        alt="Our photo"
+                        onclick="openLightbox(this.src)">
+                </div>
+
+                <div class="gallery-item">
+                    <img
+                        src="images/image 2.jpg"
+                        alt="Our photo"
+                        onclick="openLightbox(this.src)">
+                </div>
+
+                <div class="gallery-item">
+                    <img
+                        src="images/image 3.jpg"
+                        alt="Our photo"
+                        onclick="openLightbox(this.src)">
+                </div>
+
+                <div class="gallery-item">
+                    <img
+                        src="images/image 4.jpg"
+                        alt="Our photo"
+                        onclick="openLightbox(this.src)">
+                </div>
+
+                <div class="gallery-item">
+                    <img
+                        src="images/image 5.jpg"
+                        alt="Our photo"
+                        onclick="openLightbox(this.src)">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RSVP -->
+        <section class="section rsvp-section">
+
+            <p>RSVP</p>
+
+            <h2>
+                Will you join us?
+            </h2>
+
+            <p>
+                We would love to celebrate this special day with you.
+            </p>
+
+            <form id="rsvpForm">
+
+                <!-- NAME -->
+                <div class="form-group">
+
+                    <label for="name">
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <!-- ATTENDANCE -->
+                <div class="form-group">
+
+                    <label>
+                        Will you attend?
+                    </label>
+
+                    <div class="radio-group">
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="attendance"
+                                value="yes"
+                                required>
+                            Joyfully Accept
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="attendance"
+                                value="no">
+                            Regretfully Decline
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PAX -->
+                <div class="form-group">
+
+                    <label for="pax">
+                        Number of Guests
+                    </label>
+
+                    <select
+                        id="pax"
+                        name="pax">
+
+                        <option value="1">1 Guest</option>
+                        <option value="2">2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4 Guests</option>
+                        <option value="5">5 Guests</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+                <div class="form-group">
+
+                    <label for="message">
+                        Wishes for the Couple
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Write your wishes..."
+                        rows="5"></textarea>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+                <button
+                    type="submit"
+                    class="submit-button">
+                    SEND RSVP
+                </button>
+
+            </form>
+
+
+            <!-- SUCCESS MESSAGE -->
+            <div
+                id="successMessage"
+                class="success-message">
+
+                <h3>
+                    Thank You ❤️
+                </h3>
+
+                <p>
+                    Your RSVP has been received.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- WHATSAPP -->
+        <section class="section">
+
+            <p>HAVE QUESTIONS?</p>
+
+            <a
+                class="button"
+                href="https://wa.me/60123456789"
+                target="_blank">
+                WHATSAPP US
+            </a>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <p>
+                With love,
+            </p>
+
+            <h2>
+                Aiman & Sarah
+            </h2>
+
+        </footer>
+
+    </main>
+
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox">
+
+        <!-- CLOSE -->
+        <button
+            class="lightbox-close"
+            onclick="closeLightbox()">
+            ×
+        </button>
+
+
+        <!-- PREVIOUS -->
+        <button
+            class="lightbox-prev"
+            onclick="previousImage()">
+            ‹
+        </button>
+
+
+        <!-- IMAGE -->
+        <img
+            id="lightboxImage"
+            src=""
+            alt="Gallery image">
+
+
+        <!-- NEXT -->
+        <button
+            class="lightbox-next"
+            onclick="nextImage()">
+            ›
+        </button>
+
+
+        <!-- COUNTER -->
+        <div
+            id="lightboxCounter"
+            class="lightbox-counter">
+            1 / 5
+        </div>
+
+    </div>
+
+<audio id="backgroundMusic" loop>
+    <source src="music/sweet.mp3" type="audio/mpeg">
+</audio>
+<button id="musicButton" class="music-button">
+    🎵
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- YOUR JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
