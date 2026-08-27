@@ -14,35 +14,44 @@ const supabaseClient = window.supabase.createClient(
 
 
 /* =================================
-   MUSIC
-================================= */
-
-const music = document.getElementById("backgroundMusic");
-const musicButton = document.getElementById("musicButton");
-
-
-
-/* =================================
    OPEN INVITATION
 ================================= */
 
 function openInvitation() {
 
-    const cover =
-        document.querySelector(".cover");
-
-    const invitation =
-        document.getElementById("invitation");
-
-    const music =
-        document.getElementById("backgroundMusic");
-
-    const musicButton =
-        document.getElementById("musicButton");
+    const cover = document.querySelector(".cover");
+    const invitation = document.getElementById("invitation");
+    const music = document.getElementById("backgroundMusic");
+    const musicButton = document.getElementById("musicButton");
 
 
     /* ==============================
-       START MUSIC
+       HIDE COVER
+    ============================== */
+
+    if (cover) {
+        cover.classList.add("opening");
+    }
+
+
+    /* ==============================
+       SHOW INVITATION
+    ============================== */
+
+    if (invitation) {
+
+        invitation.style.display = "block";
+
+        // Show immediately — prevents blank page
+        setTimeout(function () {
+            invitation.classList.add("show-invitation");
+        }, 50);
+
+    }
+
+
+    /* ==============================
+       PLAY MUSIC
     ============================== */
 
     if (music) {
@@ -72,9 +81,12 @@ function openInvitation() {
                     error
                 );
 
+                // Show music button even if autoplay fails
                 if (musicButton) {
 
                     musicButton.style.display = "flex";
+
+                    musicButton.innerText = "🎵";
 
                 }
 
@@ -84,41 +96,7 @@ function openInvitation() {
 
 
     /* ==============================
-       COVER ANIMATION
-    ============================== */
-
-    if (cover) {
-
-        cover.classList.add("opening");
-
-    }
-
-
-    /* ==============================
-       SHOW INVITATION
-    ============================== */
-
-    if (invitation) {
-
-        invitation.style.display = "block";
-
-        setTimeout(function () {
-    invitation.classList.add("show-invitation");
-}, 100);
-
-        setTimeout(function () {
-
-            invitation.classList.add(
-                "show-invitation"
-            );
-
-        }, 300);
-
-    }
-
-
-    /* ==============================
-       SCROLL TOP
+       SCROLL TO TOP
     ============================== */
 
     window.scrollTo({
@@ -128,9 +106,17 @@ function openInvitation() {
 
 }
 
+
 /* =================================
-   MUSIC BUTTON
+   BACKGROUND MUSIC
 ================================= */
+
+const music =
+    document.getElementById("backgroundMusic");
+
+const musicButton =
+    document.getElementById("musicButton");
+
 
 if (musicButton && music) {
 
@@ -152,8 +138,8 @@ if (musicButton && music) {
                     })
                     .catch(function (error) {
 
-                        console.error(
-                            "Music playback error:",
+                        console.log(
+                            "Music error:",
                             error
                         );
 
@@ -182,7 +168,9 @@ if (musicButton && music) {
 ================================= */
 
 const weddingDate =
-    new Date("May 31, 2026 11:00:00").getTime();
+    new Date(
+        "May 31, 2026 11:00:00"
+    ).getTime();
 
 
 const countdown =
@@ -195,14 +183,18 @@ const countdown =
             weddingDate - now;
 
 
-        /* Wedding date has passed */
+        /* ==============================
+           WEDDING DAY
+        ============================== */
 
         if (distance < 0) {
 
             clearInterval(countdown);
 
             const countdownElement =
-                document.getElementById("countdown");
+                document.getElementById(
+                    "countdown"
+                );
 
             if (countdownElement) {
 
@@ -212,8 +204,13 @@ const countdown =
             }
 
             return;
+
         }
 
+
+        /* ==============================
+           CALCULATE TIME
+        ============================== */
 
         const days =
             Math.floor(
@@ -224,27 +221,37 @@ const countdown =
 
         const hours =
             Math.floor(
-                (distance %
-                    (1000 * 60 * 60 * 24)) /
+                (
+                    distance %
+                    (1000 * 60 * 60 * 24)
+                ) /
                 (1000 * 60 * 60)
             );
 
 
         const minutes =
             Math.floor(
-                (distance %
-                    (1000 * 60 * 60)) /
+                (
+                    distance %
+                    (1000 * 60 * 60)
+                ) /
                 (1000 * 60)
             );
 
 
         const seconds =
             Math.floor(
-                (distance %
-                    (1000 * 60)) /
+                (
+                    distance %
+                    (1000 * 60)
+                ) /
                 1000
             );
 
+
+        /* ==============================
+           UPDATE HTML
+        ============================== */
 
         const daysElement =
             document.getElementById("days");
@@ -298,7 +305,9 @@ if (rsvpForm) {
             event.preventDefault();
 
 
-            /* NAME */
+            /* ==============================
+               GET FORM DATA
+            ============================== */
 
             const name =
                 document
@@ -306,8 +315,6 @@ if (rsvpForm) {
                     .value
                     .trim();
 
-
-            /* ATTENDANCE */
 
             const attendanceElement =
                 document.querySelector(
@@ -322,14 +329,13 @@ if (rsvpForm) {
                 );
 
                 return;
+
             }
 
 
             const attendance =
                 attendanceElement.value;
 
-
-            /* PAX */
 
             const pax =
                 parseInt(
@@ -339,8 +345,6 @@ if (rsvpForm) {
                 );
 
 
-            /* MESSAGE */
-
             const message =
                 document
                     .getElementById("message")
@@ -348,18 +352,24 @@ if (rsvpForm) {
                     .trim();
 
 
-            /* BUTTON */
-
             const submitButton =
                 rsvpForm.querySelector(
                     ".submit-button"
                 );
 
 
-            submitButton.disabled = true;
+            /* ==============================
+               DISABLE BUTTON
+            ============================== */
 
-            submitButton.innerText =
-                "SENDING...";
+            if (submitButton) {
+
+                submitButton.disabled = true;
+
+                submitButton.innerText =
+                    "SENDING...";
+
+            }
 
 
             console.log(
@@ -373,12 +383,22 @@ if (rsvpForm) {
                     await supabaseClient
                         .from("rsvps")
                         .insert({
+
                             name: name,
-                            attendance: attendance,
+
+                            attendance:
+                                attendance,
+
                             pax: pax,
+
                             message: message
+
                         });
 
+
+                /* ==============================
+                   SUPABASE ERROR
+                ============================== */
 
                 if (error) {
 
@@ -394,28 +414,33 @@ if (rsvpForm) {
                     );
 
 
-                    submitButton.disabled =
-                        false;
+                    if (submitButton) {
 
-                    submitButton.innerText =
-                        "SEND RSVP";
+                        submitButton.disabled =
+                            false;
+
+                        submitButton.innerText =
+                            "SEND RSVP";
+
+                    }
 
                     return;
+
                 }
 
+
+                /* ==============================
+                   SUCCESS
+                ============================== */
 
                 console.log(
                     "RSVP successfully submitted!"
                 );
 
 
-                /* Hide form */
-
                 rsvpForm.style.display =
                     "none";
 
-
-                /* Show success */
 
                 if (successMessage) {
 
@@ -424,7 +449,9 @@ if (rsvpForm) {
 
                 }
 
-            } catch (error) {
+            }
+
+            catch (error) {
 
                 console.error(
                     "Unexpected error:",
@@ -437,11 +464,15 @@ if (rsvpForm) {
                 );
 
 
-                submitButton.disabled =
-                    false;
+                if (submitButton) {
 
-                submitButton.innerText =
-                    "SEND RSVP";
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.innerText =
+                        "SEND RSVP";
+
+                }
 
             }
 
@@ -479,28 +510,25 @@ let currentImage = 0;
 
 
 /* =================================
-   LIGHTBOX ELEMENT
-================================= */
-
-const lightbox =
-    document.getElementById("lightbox");
-
-
-/* =================================
    OPEN LIGHTBOX
 ================================= */
 
 function openLightbox(imageSource) {
 
-    if (!lightbox) {
-        return;
-    }
-
+    const lightbox =
+        document.getElementById(
+            "lightbox"
+        );
 
     const lightboxImage =
         document.getElementById(
             "lightboxImage"
         );
+
+
+    if (!lightbox || !lightboxImage) {
+        return;
+    }
 
 
     currentImage =
@@ -516,12 +544,8 @@ function openLightbox(imageSource) {
     }
 
 
-    if (lightboxImage) {
-
-        lightboxImage.src =
-            imageSources[currentImage];
-
-    }
+    lightboxImage.src =
+        imageSources[currentImage];
 
 
     lightbox.style.display =
@@ -542,6 +566,12 @@ function openLightbox(imageSource) {
 ================================= */
 
 function closeLightbox() {
+
+    const lightbox =
+        document.getElementById(
+            "lightbox"
+        );
+
 
     if (!lightbox) {
         return;
@@ -626,12 +656,13 @@ function showCurrentImage() {
         );
 
 
-    if (lightboxImage) {
-
-        lightboxImage.src =
-            imageSources[currentImage];
-
+    if (!lightboxImage) {
+        return;
     }
+
+
+    lightboxImage.src =
+        imageSources[currentImage];
 
 
     updateCounter();
@@ -669,6 +700,12 @@ document.addEventListener(
     "keydown",
     function (event) {
 
+        const lightbox =
+            document.getElementById(
+                "lightbox"
+            );
+
+
         if (!lightbox) {
             return;
         }
@@ -684,8 +721,6 @@ document.addEventListener(
         }
 
 
-        /* LEFT */
-
         if (
             event.key ===
             "ArrowLeft"
@@ -696,8 +731,6 @@ document.addEventListener(
         }
 
 
-        /* RIGHT */
-
         if (
             event.key ===
             "ArrowRight"
@@ -707,8 +740,6 @@ document.addEventListener(
 
         }
 
-
-        /* ESC */
 
         if (
             event.key ===
@@ -773,12 +804,17 @@ sections.forEach(
 
 
 /* =================================
-   MOBILE SWIPE
+   MOBILE SWIPE CONTROLS
 ================================= */
 
 let touchStartX = 0;
-
 let touchEndX = 0;
+
+
+const lightbox =
+    document.getElementById(
+        "lightbox"
+    );
 
 
 if (lightbox) {
@@ -822,8 +858,6 @@ function handleSwipe() {
         touchStartX;
 
 
-    /* Swipe LEFT */
-
     if (
         swipeDistance < -50
     ) {
@@ -832,8 +866,6 @@ function handleSwipe() {
 
     }
 
-
-    /* Swipe RIGHT */
 
     if (
         swipeDistance > 50
