@@ -200,17 +200,24 @@ button:hover,
 
 #invitation {
     display: none;
-
     width: 100%;
-
     opacity: 0;
-
-    transition: opacity 1.2s ease;
 }
 
-
 #invitation.show-invitation {
+    display: block;
     opacity: 1;
+    animation: invitationFadeIn 1.5s ease forwards;
+}
+
+@keyframes invitationFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 
