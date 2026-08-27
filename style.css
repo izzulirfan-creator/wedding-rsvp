@@ -46,6 +46,22 @@ body {
     background-repeat: no-repeat;
 
     position: relative;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+
+/* Cover opening animation */
+
+.cover.opening {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 
@@ -164,6 +180,15 @@ button:hover,
 
 #invitation {
     display: none;
+
+    opacity: 0;
+
+    transition: opacity 1.2s ease;
+}
+
+
+#invitation.show-invitation {
+    opacity: 1;
 }
 
 
@@ -185,6 +210,67 @@ button:hover,
     padding: 80px 25px;
 
     border-bottom: 1px solid #e2dcd3;
+
+    position: relative;
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    background-attachment: scroll;
+
+    opacity: 0;
+
+    transform: translateY(40px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+/* Sections become visible on scroll */
+
+.section.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* FIRST SECTION
+   Visible immediately after opening */
+
+#invitation > .section:first-child {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* White overlay */
+
+.section::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(255, 255, 255, 0.35);
+
+    z-index: 0;
+}
+
+
+/* Keep content above overlay */
+
+.section > * {
+    position: relative;
+
+    z-index: 1;
 }
 
 
@@ -234,7 +320,7 @@ button:hover,
 ================================ */
 
 .section:nth-of-type(3) {
-    background: #eee7dc;
+    background-color: #eee7dc;
 }
 
 
@@ -327,62 +413,22 @@ footer h2 {
 
 
 /* ================================
-   MOBILE
-================================ */
-
-@media (max-width: 600px) {
-
-    .cover::before {
-        top: 15px;
-        left: 15px;
-        right: 15px;
-        bottom: 15px;
-    }
-
-
-    .cover-content {
-        padding: 40px 20px;
-    }
-
-
-    .cover h1 {
-        font-size: 45px;
-    }
-
-
-    .section {
-        min-height: 65vh;
-
-        padding: 70px 20px;
-    }
-
-
-    #countdown {
-        gap: 8px;
-    }
-
-
-    #countdown div {
-        width: 65px;
-    }
-
-
-    #countdown span {
-        font-size: 23px;
-    }
-
-}
-/* ================================
    RSVP FORM
 ================================ */
 
 .rsvp-section {
-    background: #f8f4ed;
+    background:
+        url("backgrounds/rsvp.jpg");
+
+    background-size: cover;
+
+    background-position: center;
 }
 
 
 #rsvpForm {
     width: 100%;
+
     max-width: 500px;
 
     margin-top: 40px;
@@ -494,17 +540,25 @@ textarea {
 
     margin-bottom: 10px;
 }
+
+
 /* ================================
    GALLERY
 ================================ */
 
 .gallery-section {
-    background: #eee7dc;
+    background:
+        url("backgrounds/gallery.jpg");
+
+    background-size: cover;
+
+    background-position: center;
 }
 
 
 .gallery {
     width: 100%;
+
     max-width: 900px;
 
     margin-top: 40px;
@@ -530,6 +584,7 @@ textarea {
 
 .gallery-item img {
     width: 100%;
+
     height: 100%;
 
     object-fit: cover;
@@ -554,34 +609,64 @@ textarea {
 }
 
 
-/* Mobile */
-
-@media (max-width: 600px) {
-
-    .gallery {
-        grid-template-columns: 1fr 1fr;
-
-        gap: 8px;
-    }
+/* ================================
+   SECTION BACKGROUNDS
+================================ */
 
 
-    .gallery-item:first-child {
-        grid-column: span 2;
-    }
+/* INTRO */
 
+#invitation > .section:nth-child(1) {
+    background-image:
+        url("backgrounds/intro.jpg");
 }
+
+
+/* COUPLE */
+
+#invitation > .section:nth-child(2) {
+    background-image:
+        url("backgrounds/couple.jpg");
+}
+
+
+/* EVENT */
+
+#invitation > .section:nth-child(3) {
+    background-image:
+        url("backgrounds/event.jpg");
+}
+
+
+/* COUNTDOWN */
+
+.countdown-section {
+    background-image:
+        url("backgrounds/countdown.jpg");
+}
+
+
+/* RSVP */
+
+.rsvp-section {
+    background-image:
+        url("backgrounds/rsvp.jpg");
+}
+
+
 /* ================================
    LIGHTBOX
 ================================ */
 
 .lightbox {
-
     position: fixed;
 
     top: 0;
+
     left: 0;
 
     width: 100%;
+
     height: 100%;
 
     background: rgba(0, 0, 0, 0.94);
@@ -589,6 +674,7 @@ textarea {
     display: none;
 
     justify-content: center;
+
     align-items: center;
 
     z-index: 9999;
@@ -597,10 +683,9 @@ textarea {
 }
 
 
-/* IMAGE */
+/* Image */
 
 .lightbox img {
-
     max-width: 85%;
 
     max-height: 80vh;
@@ -613,32 +698,36 @@ textarea {
 }
 
 
-/* FADE ANIMATION */
+/* Fade animation */
 
 @keyframes lightboxFade {
 
     from {
         opacity: 0;
+
         transform: scale(0.96);
     }
 
     to {
         opacity: 1;
+
         transform: scale(1);
     }
+
 }
 
 
-/* CLOSE */
+/* Close */
 
 .lightbox-close {
-
     position: absolute;
 
     top: 20px;
+
     right: 25px;
 
     width: 45px;
+
     height: 45px;
 
     padding: 0;
@@ -664,18 +753,16 @@ textarea {
 
 
 .lightbox-close:hover {
-
     background: transparent;
 
     color: #ddd;
 }
 
 
-/* PREVIOUS + NEXT */
+/* Previous + Next */
 
 .lightbox-prev,
 .lightbox-next {
-
     position: absolute;
 
     top: 50%;
@@ -683,6 +770,7 @@ textarea {
     transform: translateY(-50%);
 
     width: 50px;
+
     height: 70px;
 
     padding: 0;
@@ -708,30 +796,26 @@ textarea {
 
 
 .lightbox-prev {
-
     left: 20px;
 }
 
 
 .lightbox-next {
-
     right: 20px;
 }
 
 
 .lightbox-prev:hover,
 .lightbox-next:hover {
-
     background: transparent;
 
     color: #ddd;
 }
 
 
-/* COUNTER */
+/* Counter */
 
 .lightbox-counter {
-
     position: absolute;
 
     bottom: 25px;
@@ -752,79 +836,23 @@ textarea {
 }
 
 
-/* MOBILE */
-
-@media (max-width: 600px) {
-
-    .lightbox {
-
-        padding: 15px;
-    }
-
-
-    .lightbox img {
-
-        max-width: 90%;
-
-        max-height: 75vh;
-    }
-
-
-    .lightbox-prev,
-    .lightbox-next {
-
-        width: 40px;
-
-        font-size: 40px;
-    }
-
-
-    .lightbox-prev {
-
-        left: 5px;
-    }
-
-
-    .lightbox-next {
-
-        right: 5px;
-    }
-
-}
 /* ================================
-   SCROLL ANIMATION
-================================ */
-
-.section {
-    opacity: 0;
-
-    transform: translateY(40px);
-
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-}
-
-
-.section.show {
-    opacity: 1;
-
-    transform: translateY(0);
-}
-/* =================================
    MUSIC BUTTON
-================================= */
+================================ */
 
 .music-button {
     position: fixed;
 
     bottom: 25px;
+
     right: 25px;
 
     width: 52px;
+
     height: 52px;
 
     border: none;
+
     border-radius: 50%;
 
     background: white;
@@ -835,11 +863,13 @@ textarea {
 
     z-index: 9999;
 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.15);
 
     display: none;
 
     align-items: center;
+
     justify-content: center;
 
     transition: transform 0.2s ease;
@@ -849,7 +879,8 @@ textarea {
 /* Playing animation */
 
 .music-button.playing {
-    animation: musicSpin 3s linear infinite;
+    animation:
+        musicSpin 3s linear infinite;
 }
 
 
@@ -880,72 +911,146 @@ textarea {
 .music-button:active {
     transform: scale(0.95);
 }
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .cover::before {
+        top: 15px;
+
+        left: 15px;
+
+        right: 15px;
+
+        bottom: 15px;
+    }
+
+
+    .cover-content {
+        padding: 40px 20px;
+    }
+
+
+    .cover h1 {
+        font-size: 45px;
+    }
+
+
+    .section {
+        min-height: 65vh;
+
+        padding: 70px 20px;
+    }
+
+
+    #countdown {
+        gap: 8px;
+    }
+
+
+    #countdown div {
+        width: 65px;
+    }
+
+
+    #countdown span {
+        font-size: 23px;
+    }
+
+
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+    }
+
+
+    .gallery-item:first-child {
+        grid-column: span 2;
+    }
+
+
+    .lightbox {
+        padding: 15px;
+    }
+
+
+    .lightbox img {
+        max-width: 90%;
+
+        max-height: 75vh;
+    }
+
+
+    .lightbox-prev,
+    .lightbox-next {
+        width: 40px;
+
+        font-size: 40px;
+    }
+
+
+    .lightbox-prev {
+        left: 5px;
+    }
+
+
+    .lightbox-next {
+        right: 5px;
+    }
+
+}
 /* =================================
-   SECTION BACKGROUNDS
+   INTRO TEXT ANIMATION
 ================================= */
 
-.section {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-}
-/* INTRO */
-
-#invitation > .section:nth-child(1) {
-    background-image: url("backgrounds/intro.jpg");
+#invitation > .section:first-child p,
+#invitation > .section:first-child h2 {
+    opacity: 0;
+    transform: translateY(25px);
 }
 
 
-/* COUPLE */
+/* Small text */
 
-#invitation > .section:nth-child(2) {
-    background-image: url("backgrounds/couple.jpg");
+#invitation.show-invitation > .section:first-child p:first-child {
+    animation: introFadeUp 1s ease forwards;
+    animation-delay: 0.3s;
 }
 
 
-/* EVENT */
+/* Main heading */
 
-#invitation > .section:nth-child(3) {
-    background-image: url("backgrounds/event.jpg");
+#invitation.show-invitation > .section:first-child h2 {
+    animation: introFadeUp 1s ease forwards;
+    animation-delay: 0.8s;
 }
 
 
-/* COUNTDOWN */
+/* Last paragraph */
 
-.countdown-section {
-    background-image: url("backgrounds/countdown.jpg");
+#invitation.show-invitation > .section:first-child p:last-child {
+    animation: introFadeUp 1s ease forwards;
+    animation-delay: 1.4s;
 }
 
 
-/* RSVP */
+/* Animation */
 
-.rsvp-section {
-    background-image: url("backgrounds/rsvp.jpg");
-}
-.section {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+@keyframes introFadeUp {
 
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
 
-.section::before {
-    content: "";
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-    position: absolute;
-
-    inset: 0;
-
-    background: rgba(255, 255, 255, 0.35);
-
-    z-index: 0;
-}
-
-
-.section > * {
-    position: relative;
-    z-index: 1;
 }
