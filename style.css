@@ -27,6 +27,7 @@ body {
 
 .cover {
     min-height: 100vh;
+    width: 100%;
 
     display: flex;
     justify-content: center;
@@ -51,8 +52,8 @@ body {
     visibility: visible;
 
     transition:
-        opacity 1s ease,
-        visibility 1s ease;
+        opacity 0.8s ease,
+        visibility 0.8s ease;
 }
 
 
@@ -125,12 +126,31 @@ body {
 
 /* ================================
    COVER OPENING
+   FIX WHITE BLANK
 ================================ */
 
 .cover.opening {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+
+    /*
+       IMPORTANT:
+       Remove cover from page layout
+       so it doesn't leave blank space.
+    */
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 0;
+    min-height: 0;
+
+    padding: 0;
+
+    overflow: hidden;
 }
 
 
@@ -181,6 +201,8 @@ button:hover,
 #invitation {
     display: none;
 
+    width: 100%;
+
     opacity: 0;
 
     transition: opacity 1.2s ease;
@@ -192,12 +214,24 @@ button:hover,
 }
 
 
+/*
+   When JS opens invitation,
+   make sure it can actually appear.
+*/
+
+#invitation[style*="display: block"] {
+    opacity: 1;
+}
+
+
 /* ================================
    GENERAL SECTION
 ================================ */
 
 .section {
     min-height: 70vh;
+
+    width: 100%;
 
     display: flex;
 
@@ -220,6 +254,8 @@ button:hover,
     background-repeat: no-repeat;
 
     background-attachment: scroll;
+
+    overflow: hidden;
 }
 
 
@@ -249,8 +285,7 @@ button:hover,
 
 /* ================================
    FIRST SECTION
-   IMPORTANT:
-   First page is ALWAYS visible
+   ALWAYS VISIBLE
 ================================ */
 
 #invitation > .section:first-child {
@@ -362,7 +397,7 @@ button:hover,
 
 
 /* ================================
-   EVENT SECTION
+   EVENT
 ================================ */
 
 .section:nth-child(3) h2 {
@@ -482,6 +517,12 @@ button:hover,
 /* ================================
    RSVP
 ================================ */
+
+.rsvp-section {
+    background-image:
+        url("backgrounds/rsvp.jpg");
+}
+
 
 #rsvpForm {
     width: 100%;
@@ -643,13 +684,11 @@ textarea {
 
     from {
         opacity: 0;
-
         transform: scale(0.96);
     }
 
     to {
         opacity: 1;
-
         transform: scale(1);
     }
 
@@ -664,15 +703,12 @@ textarea {
     position: absolute;
 
     top: 20px;
-
     right: 25px;
 
     width: 45px;
-
     height: 45px;
 
     padding: 0;
-
     margin: 0;
 
     border: none;
@@ -713,11 +749,9 @@ textarea {
     transform: translateY(-50%);
 
     width: 50px;
-
     height: 70px;
 
     padding: 0;
-
     margin: 0;
 
     border: none;
@@ -789,11 +823,9 @@ textarea {
     position: fixed;
 
     bottom: 25px;
-
     right: 25px;
 
     width: 52px;
-
     height: 52px;
 
     border: none;
@@ -890,11 +922,8 @@ footer h2 {
 
     .cover::before {
         top: 15px;
-
         left: 15px;
-
         right: 15px;
-
         bottom: 15px;
     }
 
