@@ -21,29 +21,30 @@ const music = document.getElementById("backgroundMusic");
 const musicButton = document.getElementById("musicButton");
 
 
+
 /* =================================
    OPEN INVITATION
 ================================= */
 
 function openInvitation() {
 
-    /* Hide cover */
-    const cover = document.querySelector(".cover");
+    const cover =
+        document.querySelector(".cover");
 
-    if (cover) {
-        cover.style.display = "none";
-    }
+    const invitation =
+        document.getElementById("invitation");
 
+    const music =
+        document.getElementById("backgroundMusic");
 
-    /* Show invitation */
-    const invitation = document.getElementById("invitation");
-
-    if (invitation) {
-        invitation.style.display = "block";
-    }
+    const musicButton =
+        document.getElementById("musicButton");
 
 
-    /* Start music */
+    /* ==============================
+       START MUSIC
+    ============================== */
+
     if (music) {
 
         music.volume = 0.5;
@@ -51,7 +52,7 @@ function openInvitation() {
         music.play()
             .then(function () {
 
-                console.log("🎵 Music started successfully");
+                console.log("🎵 Music started");
 
                 if (musicButton) {
 
@@ -60,33 +61,65 @@ function openInvitation() {
                     musicButton.innerText = "🎵";
 
                     musicButton.classList.add("playing");
+
                 }
 
             })
             .catch(function (error) {
 
                 console.log(
-                    "Music autoplay blocked:",
+                    "Music could not start:",
                     error
                 );
-
-                /*
-                    Show music button anyway.
-                    User can tap it manually.
-                */
 
                 if (musicButton) {
 
                     musicButton.style.display = "flex";
 
-                    musicButton.innerText = "🎵";
                 }
 
             });
+
     }
 
 
-    /* Scroll to top */
+    /* ==============================
+       COVER ANIMATION
+    ============================== */
+
+    if (cover) {
+
+        cover.classList.add("opening");
+
+    }
+
+
+    /* ==============================
+       SHOW INVITATION
+    ============================== */
+
+    if (invitation) {
+
+        invitation.style.display = "block";
+
+        setTimeout(function () {
+    invitation.classList.add("show-invitation");
+}, 100);
+
+        setTimeout(function () {
+
+            invitation.classList.add(
+                "show-invitation"
+            );
+
+        }, 300);
+
+    }
+
+
+    /* ==============================
+       SCROLL TOP
+    ============================== */
 
     window.scrollTo({
         top: 0,
@@ -94,7 +127,6 @@ function openInvitation() {
     });
 
 }
-
 
 /* =================================
    MUSIC BUTTON
