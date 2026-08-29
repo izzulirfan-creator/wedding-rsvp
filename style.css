@@ -1,3 +1,4 @@
+```css
 /* ================================
    BASIC RESET
 ================================ */
@@ -134,11 +135,6 @@ body {
     visibility: hidden;
     pointer-events: none;
 
-    /*
-       IMPORTANT:
-       Remove cover from page layout
-       so it doesn't leave blank space.
-    */
     position: absolute;
 
     top: 0;
@@ -200,17 +196,25 @@ button:hover,
 
 #invitation {
     display: none;
+
     width: 100%;
+
     opacity: 0;
 }
 
+
 #invitation.show-invitation {
     display: block;
+
     opacity: 1;
-    animation: invitationFadeIn 1.5s ease forwards;
+
+    animation:
+        invitationFadeIn 1.5s ease forwards;
 }
 
+
 @keyframes invitationFadeIn {
+
     from {
         opacity: 0;
     }
@@ -218,27 +222,20 @@ button:hover,
     to {
         opacity: 1;
     }
-}
 
-
-/*
-   When JS opens invitation,
-   make sure it can actually appear.
-*/
-
-#invitation[style*="display: block"] {
-    opacity: 1;
 }
 
 
 /* ================================
    GENERAL SECTION
+   ONE FULL SCREEN PER SECTION
 ================================ */
 
 .section {
-    min-height: 70vh;
-
     width: 100%;
+
+    min-height: 100vh;
+    height: 100vh;
 
     display: flex;
 
@@ -683,7 +680,8 @@ textarea {
 
     border-radius: 3px;
 
-    animation: lightboxFade 0.3s ease;
+    animation:
+        lightboxFade 0.3s ease;
 }
 
 
@@ -691,11 +689,13 @@ textarea {
 
     from {
         opacity: 0;
+
         transform: scale(0.96);
     }
 
     to {
         opacity: 1;
+
         transform: scale(1);
     }
 
@@ -895,6 +895,16 @@ textarea {
 ================================ */
 
 footer {
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
     padding: 90px 25px;
 
     background: #3f3933;
@@ -929,8 +939,11 @@ footer h2 {
 
     .cover::before {
         top: 15px;
+
         left: 15px;
+
         right: 15px;
+
         bottom: 15px;
     }
 
@@ -945,12 +958,32 @@ footer h2 {
     }
 
 
-    .section {
-        min-height: 65vh;
+    /* ============================
+       ONE FULL SCREEN PER SECTION
+    ============================ */
 
-        padding: 70px 20px;
+    .section {
+        min-height: 100vh;
+
+        height: 100vh;
+
+        padding: 60px 20px;
     }
 
+
+    .section h2 {
+        font-size: clamp(30px, 8vw, 42px);
+    }
+
+
+    .section p {
+        font-size: 15px;
+    }
+
+
+    /* ============================
+       COUNTDOWN
+    ============================ */
 
     #countdown {
         gap: 8px;
@@ -959,6 +992,8 @@ footer h2 {
 
     #countdown div {
         width: 65px;
+
+        padding: 13px 5px;
     }
 
 
@@ -967,10 +1002,16 @@ footer h2 {
     }
 
 
+    /* ============================
+       GALLERY
+    ============================ */
+
     .gallery {
         grid-template-columns: 1fr 1fr;
 
         gap: 8px;
+
+        margin-top: 25px;
     }
 
 
@@ -978,6 +1019,24 @@ footer h2 {
         grid-column: span 2;
     }
 
+
+    /* ============================
+       RSVP
+    ============================ */
+
+    #rsvpForm {
+        margin-top: 25px;
+    }
+
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+
+    /* ============================
+       LIGHTBOX
+    ============================ */
 
     .lightbox {
         padding: 15px;
@@ -1009,6 +1068,10 @@ footer h2 {
     }
 
 
+    /* ============================
+       MUSIC BUTTON
+    ============================ */
+
     .music-button {
         bottom: 20px;
 
@@ -1019,4 +1082,16 @@ footer h2 {
         height: 48px;
     }
 
+
+    /* ============================
+       FOOTER
+    ============================ */
+
+    footer {
+        min-height: 100vh;
+
+        padding: 70px 20px;
+    }
+
 }
+```
