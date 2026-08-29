@@ -1,3 +1,4 @@
+```css
 /* ================================
    BASIC RESET
 ================================ */
@@ -1004,42 +1005,37 @@ textarea {
     }
 
 }
+
+
 /* =================================
    INTRO TEXT ANIMATION
 ================================= */
 
+/*
+   IMPORTANT:
+   The first section is now shown immediately.
+   Its text is no longer hidden before animation,
+   preventing a blank screen after OPEN INVITATION.
+*/
+
 #invitation > .section:first-child p,
 #invitation > .section:first-child h2 {
-    opacity: 0;
-    transform: translateY(25px);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
-/* Small text */
+/* Remove delayed intro animation */
 
-#invitation.show-invitation > .section:first-child p:first-child {
-    animation: introFadeUp 1s ease forwards;
-    animation-delay: 0.3s;
-}
-
-
-/* Main heading */
-
-#invitation.show-invitation > .section:first-child h2 {
-    animation: introFadeUp 1s ease forwards;
-    animation-delay: 0.8s;
-}
-
-
-/* Last paragraph */
-
+#invitation.show-invitation > .section:first-child p:first-child,
+#invitation.show-invitation > .section:first-child h2,
 #invitation.show-invitation > .section:first-child p:last-child {
-    animation: introFadeUp 1s ease forwards;
-    animation-delay: 1.4s;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
-/* Animation */
+/* Animation kept available for future use */
 
 @keyframes introFadeUp {
 
@@ -1054,3 +1050,4 @@ textarea {
     }
 
 }
+```
