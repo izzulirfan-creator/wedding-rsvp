@@ -20,10 +20,14 @@ const supabaseClient =
 ================================= */
 
 const music =
-    document.getElementById("backgroundMusic");
+    document.getElementById(
+        "backgroundMusic"
+    );
 
 const musicButton =
-    document.getElementById("musicButton");
+    document.getElementById(
+        "musicButton"
+    );
 
 
 /* =================================
@@ -33,16 +37,24 @@ const musicButton =
 function openInvitation() {
 
     const cover =
-        document.querySelector(".cover");
+        document.querySelector(
+            ".cover"
+        );
 
     const invitation =
-        document.getElementById("invitation");
+        document.getElementById(
+            "invitation"
+        );
 
     const music =
-        document.getElementById("backgroundMusic");
+        document.getElementById(
+            "backgroundMusic"
+        );
 
     const musicButton =
-        document.getElementById("musicButton");
+        document.getElementById(
+            "musicButton"
+        );
 
 
     /* ==============================
@@ -56,7 +68,9 @@ function openInvitation() {
         music.play()
             .then(function () {
 
-                console.log("🎵 Music started");
+                console.log(
+                    "🎵 Music started"
+                );
 
                 if (musicButton) {
 
@@ -93,12 +107,14 @@ function openInvitation() {
 
 
     /* ==============================
-       COVER ANIMATION
+       COVER SWIPE UP
     ============================== */
 
     if (cover) {
 
-        cover.classList.add("opening");
+        cover.classList.add(
+            "opening"
+        );
 
     }
 
@@ -119,14 +135,6 @@ function openInvitation() {
             );
 
         }, 100);
-
-        setTimeout(function () {
-
-            invitation.classList.add(
-                "show-invitation"
-            );
-
-        }, 300);
 
     }
 
@@ -214,8 +222,6 @@ const countdown =
             weddingDate - now;
 
 
-        /* Wedding date has passed */
-
         if (distance < 0) {
 
             clearInterval(countdown);
@@ -295,34 +301,23 @@ const countdown =
 
 
         if (daysElement) {
-
             daysElement.innerText =
                 days;
-
         }
-
 
         if (hoursElement) {
-
             hoursElement.innerText =
                 hours;
-
         }
-
 
         if (minutesElement) {
-
             minutesElement.innerText =
                 minutes;
-
         }
 
-
         if (secondsElement) {
-
             secondsElement.innerText =
                 seconds;
-
         }
 
     }, 1000);
@@ -352,16 +347,12 @@ if (rsvpForm) {
             event.preventDefault();
 
 
-            /* NAME */
-
             const name =
                 document
                     .getElementById("name")
                     .value
                     .trim();
 
-
-            /* ATTENDANCE */
 
             const attendanceElement =
                 document.querySelector(
@@ -383,8 +374,6 @@ if (rsvpForm) {
                 attendanceElement.value;
 
 
-            /* PAX */
-
             const pax =
                 parseInt(
                     document
@@ -393,16 +382,12 @@ if (rsvpForm) {
                 );
 
 
-            /* MESSAGE */
-
             const message =
                 document
                     .getElementById("message")
                     .value
                     .trim();
 
-
-            /* BUTTON */
 
             const submitButton =
                 rsvpForm.querySelector(
@@ -415,11 +400,6 @@ if (rsvpForm) {
 
             submitButton.innerText =
                 "SENDING...";
-
-
-            console.log(
-                "Sending RSVP..."
-            );
 
 
             try {
@@ -442,12 +422,10 @@ if (rsvpForm) {
                         error
                     );
 
-
                     alert(
                         "RSVP failed: " +
                         error.message
                     );
-
 
                     submitButton.disabled =
                         false;
@@ -456,22 +434,12 @@ if (rsvpForm) {
                         "SEND RSVP";
 
                     return;
-
                 }
 
-
-                console.log(
-                    "RSVP successfully submitted!"
-                );
-
-
-                /* Hide form */
 
                 rsvpForm.style.display =
                     "none";
 
-
-                /* Show success */
 
                 if (successMessage) {
 
@@ -487,11 +455,9 @@ if (rsvpForm) {
                     error
                 );
 
-
                 alert(
                     "Something went wrong. Please try again."
                 );
-
 
                 submitButton.disabled =
                     false;
@@ -534,19 +500,11 @@ galleryImages.forEach(
 let currentImage = 0;
 
 
-/* =================================
-   LIGHTBOX ELEMENT
-================================= */
-
 const lightbox =
     document.getElementById(
         "lightbox"
     );
 
-
-/* =================================
-   OPEN LIGHTBOX
-================================= */
 
 function openLightbox(imageSource) {
 
@@ -595,10 +553,6 @@ function openLightbox(imageSource) {
 }
 
 
-/* =================================
-   CLOSE LIGHTBOX
-================================= */
-
 function closeLightbox() {
 
     if (!lightbox) {
@@ -616,13 +570,11 @@ function closeLightbox() {
 }
 
 
-/* =================================
-   NEXT IMAGE
-================================= */
-
 function nextImage() {
 
-    if (imageSources.length === 0) {
+    if (
+        imageSources.length === 0
+    ) {
         return;
     }
 
@@ -645,13 +597,11 @@ function nextImage() {
 }
 
 
-/* =================================
-   PREVIOUS IMAGE
-================================= */
-
 function previousImage() {
 
-    if (imageSources.length === 0) {
+    if (
+        imageSources.length === 0
+    ) {
         return;
     }
 
@@ -671,10 +621,6 @@ function previousImage() {
 
 }
 
-
-/* =================================
-   SHOW CURRENT IMAGE
-================================= */
 
 function showCurrentImage() {
 
@@ -696,10 +642,6 @@ function showCurrentImage() {
 
 }
 
-
-/* =================================
-   UPDATE COUNTER
-================================= */
 
 function updateCounter() {
 
@@ -736,9 +678,7 @@ document.addEventListener(
             lightbox.style.display !==
             "flex"
         ) {
-
             return;
-
         }
 
 
@@ -776,16 +716,16 @@ document.addEventListener(
 
 
 /* =================================
-   SCROLL ANIMATION
+   SECTION BLUR ON SCROLL
 ================================= */
 
 const sections =
     document.querySelectorAll(
-        ".section"
+        "#invitation > .section"
     );
 
 
-const observer =
+const sectionObserver =
     new IntersectionObserver(
 
         function (entries) {
@@ -798,7 +738,13 @@ const observer =
                     ) {
 
                         entry.target.classList.add(
-                            "show"
+                            "active"
+                        );
+
+                    } else {
+
+                        entry.target.classList.remove(
+                            "active"
                         );
 
                     }
@@ -809,7 +755,7 @@ const observer =
         },
 
         {
-            threshold: 0.15
+            threshold: 0.45
         }
 
     );
@@ -818,62 +764,7 @@ const observer =
 sections.forEach(
     function (section) {
 
-        observer.observe(section);
-
-    }
-);
-
-
-/* =================================
-   ACTIVE SECTION BLUR EFFECT
-================================= */
-
-const activeSectionObserver =
-    new IntersectionObserver(
-
-        function (entries) {
-
-            entries.forEach(
-                function (entry) {
-
-                    if (
-                        entry.isIntersecting &&
-                        entry.intersectionRatio >= 0.5
-                    ) {
-
-                        sections.forEach(
-                            function (section) {
-
-                                section.classList.remove(
-                                    "active-section"
-                                );
-
-                            }
-                        );
-
-
-                        entry.target.classList.add(
-                            "active-section"
-                        );
-
-                    }
-
-                }
-            );
-
-        },
-
-        {
-            threshold: [0.5]
-        }
-
-    );
-
-
-sections.forEach(
-    function (section) {
-
-        activeSectionObserver.observe(
+        sectionObserver.observe(
             section
         );
 
@@ -920,18 +811,12 @@ if (lightbox) {
 }
 
 
-/* =================================
-   HANDLE SWIPE
-================================= */
-
 function handleSwipe() {
 
     const swipeDistance =
         touchEndX -
         touchStartX;
 
-
-    /* Swipe LEFT */
 
     if (
         swipeDistance < -50
@@ -941,8 +826,6 @@ function handleSwipe() {
 
     }
 
-
-    /* Swipe RIGHT */
 
     if (
         swipeDistance > 50
