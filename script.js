@@ -1,3 +1,4 @@
+```javascript
 /* =================================
    SUPABASE CONNECTION
 ================================= */
@@ -30,6 +31,110 @@ const musicButton =
     );
 
 
+/*
+   Remember whether music was playing
+   before user leaves the website/tab.
+*/
+
+let musicWasPlayingBeforeLeave = false;
+
+
+/* =================================
+   MUSIC UI
+================================= */
+
+function updateMusicButton() {
+
+    if (!musicButton || !music) {
+        return;
+    }
+
+
+    if (!music.paused) {
+
+        musicButton.style.display =
+            "flex";
+
+        musicButton.innerText =
+            "🎵";
+
+        musicButton.classList.add(
+            "playing"
+        );
+
+    } else {
+
+        musicButton.style.display =
+            "flex";
+
+        musicButton.innerText =
+            "🔇";
+
+        musicButton.classList.remove(
+            "playing"
+        );
+
+    }
+
+}
+
+
+/* =================================
+   PLAY MUSIC
+================================= */
+
+function playMusic() {
+
+    if (!music) {
+        return;
+    }
+
+
+    music.volume = 0.5;
+
+
+    music.play()
+        .then(function () {
+
+            console.log(
+                "🎵 Music playing"
+            );
+
+            updateMusicButton();
+
+        })
+        .catch(function (error) {
+
+            console.log(
+                "Music could not start:",
+                error
+            );
+
+            updateMusicButton();
+
+        });
+
+}
+
+
+/* =================================
+   PAUSE MUSIC
+================================= */
+
+function pauseMusic() {
+
+    if (!music) {
+        return;
+    }
+
+
+    music.pause();
+
+    updateMusicButton();
+
+}
+
+
 /* =================================
    OPEN INVITATION
 ================================= */
@@ -44,16 +149,6 @@ function openInvitation() {
     const invitation =
         document.getElementById(
             "invitation"
-        );
-
-    const music =
-        document.getElementById(
-            "backgroundMusic"
-        );
-
-    const musicButton =
-        document.getElementById(
-            "musicButton"
         );
 
 
@@ -72,19 +167,7 @@ function openInvitation() {
                     "🎵 Music started"
                 );
 
-                if (musicButton) {
-
-                    musicButton.style.display =
-                        "flex";
-
-                    musicButton.innerText =
-                        "🎵";
-
-                    musicButton.classList.add(
-                        "playing"
-                    );
-
-                }
+                updateMusicButton();
 
             })
             .catch(function (error) {
@@ -163,36 +246,11 @@ if (musicButton && music) {
 
             if (music.paused) {
 
-                music.play()
-                    .then(function () {
-
-                        musicButton.innerText =
-                            "🎵";
-
-                        musicButton.classList.add(
-                            "playing"
-                        );
-
-                    })
-                    .catch(function (error) {
-
-                        console.error(
-                            "Music playback error:",
-                            error
-                        );
-
-                    });
+                playMusic();
 
             } else {
 
-                music.pause();
-
-                musicButton.innerText =
-                    "🔇";
-
-                musicButton.classList.remove(
-                    "playing"
-                );
+                pauseMusic();
 
             }
 
@@ -200,6 +258,73 @@ if (musicButton && music) {
     );
 
 }
+
+
+/* =================================
+   MUSIC LEAVE / RETURN
+================================= */
+
+/*
+   When the user leaves the tab,
+   browser, or locks the phone,
+   remember whether music was playing.
+*/
+
+document.addEventListener(
+    "visibilitychange",
+    function () {
+
+        if (
+            document.visibilityState ===
+            "hidden"
+        ) {
+
+            /*
+               Remember current music state.
+            */
+
+            musicWasPlayingBeforeLeave =
+                music &&
+                !music.paused;
+
+
+            /*
+               Pause music while away.
+            */
+
+            if (music) {
+
+                music.pause();
+
+            }
+
+
+            updateMusicButton();
+
+        }
+
+
+        /*
+           User has returned to the website.
+        */
+
+        if (
+            document.visibilityState ===
+            "visible"
+        ) {
+
+            if (
+                musicWasPlayingBeforeLeave
+            ) {
+
+                playMusic();
+
+            }
+
+        }
+
+    }
+);
 
 
 /* =================================
@@ -301,23 +426,34 @@ const countdown =
 
 
         if (daysElement) {
+
             daysElement.innerText =
                 days;
+
         }
+
 
         if (hoursElement) {
+
             hoursElement.innerText =
                 hours;
+
         }
+
 
         if (minutesElement) {
+
             minutesElement.innerText =
                 minutes;
+
         }
 
+
         if (secondsElement) {
+
             secondsElement.innerText =
                 seconds;
+
         }
 
     }, 1000);
@@ -836,3 +972,4 @@ function handleSwipe() {
     }
 
 }
+```
