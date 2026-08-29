@@ -1,3 +1,4 @@
+```css
 /* ================================
    BASIC RESET
 ================================ */
@@ -26,8 +27,6 @@ body {
 ================================ */
 
 .cover {
-    width: 100%;
-    height: 100vh;
     min-height: 100vh;
 
     display: flex;
@@ -47,9 +46,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
 
     opacity: 1;
     visibility: visible;
@@ -61,12 +58,12 @@ body {
         opacity 0.4s ease,
         visibility 0.4s ease;
 
-    z-index: 1000;
+    z-index: 10;
 }
 
 
 /* ================================
-   COVER OPENING
+   COVER OPENING ANIMATION
 ================================ */
 
 .cover.opening {
@@ -80,9 +77,7 @@ body {
 }
 
 
-/* ================================
-   COVER BORDER
-================================ */
+/* Decorative border */
 
 .cover::before {
     content: "";
@@ -100,9 +95,7 @@ body {
 }
 
 
-/* ================================
-   COVER CONTENT
-================================ */
+/* Cover content */
 
 .cover-content {
     max-width: 600px;
@@ -110,14 +103,11 @@ body {
     padding: 50px 30px;
 
     position: relative;
-
     z-index: 2;
 }
 
 
-/* ================================
-   SMALL TEXT
-================================ */
+/* Small title */
 
 .small-text {
     font-size: 12px;
@@ -130,9 +120,7 @@ body {
 }
 
 
-/* ================================
-   COVER TITLE
-================================ */
+/* Couple name */
 
 .cover h1 {
     font-size: clamp(45px, 10vw, 75px);
@@ -147,9 +135,7 @@ body {
 }
 
 
-/* ================================
-   COVER DATE
-================================ */
+/* Date */
 
 .cover p:not(.small-text) {
     font-size: 15px;
@@ -251,42 +237,25 @@ button:hover,
 
     transform: translateY(40px);
 
-    filter: blur(4px);
-
     transition:
         opacity 0.8s ease,
         transform 0.8s ease,
-        filter 0.7s ease;
+        filter 0.8s ease;
 }
 
 
-/* ================================
-   ACTIVE SECTION
-================================ */
-
-.section.active-section {
-    filter: blur(0);
-
-    opacity: 1;
-
-    transform: translateY(0);
-}
-
-
-/* ================================
-   VISIBLE SECTION
-================================ */
+/* Sections become visible on scroll */
 
 .section.show {
     opacity: 1;
 
     transform: translateY(0);
+
+    filter: blur(0);
 }
 
 
-/* ================================
-   FIRST SECTION
-================================ */
+/* First section */
 
 #invitation > .section:first-child {
     opacity: 1;
@@ -297,9 +266,7 @@ button:hover,
 }
 
 
-/* ================================
-   WHITE OVERLAY
-================================ */
+/* White overlay */
 
 .section::before {
     content: "";
@@ -314,9 +281,7 @@ button:hover,
 }
 
 
-/* ================================
-   CONTENT ABOVE OVERLAY
-================================ */
+/* Keep content above overlay */
 
 .section > * {
     position: relative;
@@ -325,9 +290,7 @@ button:hover,
 }
 
 
-/* ================================
-   SMALL HEADING
-================================ */
+/* Small heading */
 
 .section > p:first-child {
     font-family: Arial, sans-serif;
@@ -342,9 +305,7 @@ button:hover,
 }
 
 
-/* ================================
-   MAIN HEADING
-================================ */
+/* Main heading */
 
 .section h2 {
     font-size: clamp(30px, 7vw, 50px);
@@ -359,9 +320,7 @@ button:hover,
 }
 
 
-/* ================================
-   PARAGRAPH
-================================ */
+/* Paragraph */
 
 .section p {
     max-width: 500px;
@@ -369,6 +328,29 @@ button:hover,
     font-size: 16px;
 
     color: #6d655d;
+}
+
+
+/* ================================
+   FIRST SECTION - FULL SCREEN
+================================ */
+
+#invitation > .section:first-child {
+    min-height: 100dvh;
+
+    height: 100dvh;
+
+    padding: 40px 20px;
+
+    justify-content: center;
+
+    align-items: center;
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+    filter: blur(0);
 }
 
 
@@ -470,7 +452,7 @@ footer h2 {
 
 
 /* ================================
-   RSVP
+   RSVP FORM
 ================================ */
 
 .rsvp-section {
@@ -657,6 +639,8 @@ textarea {
 }
 
 
+/* First image bigger */
+
 .gallery-item:first-child {
     grid-column: span 2;
 
@@ -706,9 +690,11 @@ textarea {
     position: fixed;
 
     top: 0;
+
     left: 0;
 
     width: 100%;
+
     height: 100%;
 
     background: rgba(0, 0, 0, 0.94);
@@ -716,6 +702,7 @@ textarea {
     display: none;
 
     justify-content: center;
+
     align-items: center;
 
     z-index: 9999;
@@ -754,20 +741,19 @@ textarea {
 }
 
 
-/* ================================
-   LIGHTBOX CLOSE
-================================ */
-
 .lightbox-close {
     position: absolute;
 
     top: 20px;
+
     right: 25px;
 
     width: 45px;
+
     height: 45px;
 
     padding: 0;
+
     margin: 0;
 
     border: none;
@@ -795,10 +781,6 @@ textarea {
 }
 
 
-/* ================================
-   LIGHTBOX NAVIGATION
-================================ */
-
 .lightbox-prev,
 .lightbox-next {
     position: absolute;
@@ -808,9 +790,11 @@ textarea {
     transform: translateY(-50%);
 
     width: 50px;
+
     height: 70px;
 
     padding: 0;
+
     margin: 0;
 
     border: none;
@@ -849,10 +833,6 @@ textarea {
 }
 
 
-/* ================================
-   LIGHTBOX COUNTER
-================================ */
-
 .lightbox-counter {
     position: absolute;
 
@@ -882,9 +862,11 @@ textarea {
     position: fixed;
 
     bottom: 25px;
+
     right: 25px;
 
     width: 52px;
+
     height: 52px;
 
     border: none;
@@ -905,6 +887,7 @@ textarea {
     display: none;
 
     align-items: center;
+
     justify-content: center;
 
     transition: transform 0.2s ease;
@@ -946,10 +929,19 @@ textarea {
 
 @media (max-width: 600px) {
 
+    .cover {
+        min-height: 100dvh;
+        height: 100dvh;
+    }
+
+
     .cover::before {
         top: 15px;
+
         left: 15px;
+
         right: 15px;
+
         bottom: 15px;
     }
 
@@ -968,13 +960,17 @@ textarea {
         min-height: 65vh;
 
         padding: 70px 20px;
-
-        filter: blur(4px);
     }
 
 
-    .section.active-section {
-        filter: blur(0);
+    /* First section remains full phone screen */
+
+    #invitation > .section:first-child {
+        min-height: 100dvh;
+
+        height: 100dvh;
+
+        padding: 40px 20px;
     }
 
 
@@ -1037,9 +1033,9 @@ textarea {
 }
 
 
-/* ================================
+/* =================================
    INTRO TEXT ANIMATION
-================================ */
+================================= */
 
 #invitation > .section:first-child p,
 #invitation > .section:first-child h2 {
@@ -1049,6 +1045,8 @@ textarea {
 }
 
 
+/* Small text */
+
 #invitation.show-invitation > .section:first-child p:first-child {
     animation:
         introFadeUp 1s ease forwards;
@@ -1056,6 +1054,8 @@ textarea {
     animation-delay: 0.3s;
 }
 
+
+/* Main heading */
 
 #invitation.show-invitation > .section:first-child h2 {
     animation:
@@ -1065,6 +1065,8 @@ textarea {
 }
 
 
+/* Last paragraph */
+
 #invitation.show-invitation > .section:first-child p:last-child {
     animation:
         introFadeUp 1s ease forwards;
@@ -1073,9 +1075,7 @@ textarea {
 }
 
 
-/* ================================
-   INTRO ANIMATION
-================================ */
+/* Animation */
 
 @keyframes introFadeUp {
 
@@ -1092,3 +1092,4 @@ textarea {
     }
 
 }
+```
