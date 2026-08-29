@@ -1,0 +1,1056 @@
+/* ================================
+   BASIC RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #f8f4ed;
+    color: #3d3935;
+    text-align: center;
+    line-height: 1.6;
+}
+
+
+/* ================================
+   COVER
+================================ */
+
+.cover {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            rgba(248, 244, 237, 0.55),
+            rgba(248, 244, 237, 0.55)
+        ),
+        url("backgrounds/cover.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+
+/* Cover opening animation */
+
+.cover.opening {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* Decorative border */
+
+.cover::before {
+    content: "";
+
+    position: absolute;
+
+    top: 25px;
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
+
+    border: 1px solid #b9a58b;
+
+    pointer-events: none;
+}
+
+
+/* Cover content */
+
+.cover-content {
+    max-width: 600px;
+
+    padding: 50px 30px;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Small title */
+
+.small-text {
+    font-size: 12px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 25px;
+
+    color: #8b7965;
+}
+
+
+/* Couple name */
+
+.cover h1 {
+    font-size: clamp(45px, 10vw, 75px);
+
+    font-weight: normal;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+
+    color: #39332e;
+}
+
+
+/* Date */
+
+.cover p:not(.small-text) {
+    font-size: 15px;
+
+    letter-spacing: 3px;
+
+    color: #776b5f;
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+button,
+.button {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 14px 30px;
+
+    border: 1px solid #6f6254;
+
+    background: #6f6254;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+button:hover,
+.button:hover {
+    background: transparent;
+
+    color: #6f6254;
+}
+
+
+/* ================================
+   INVITATION
+================================ */
+
+#invitation {
+    display: none;
+
+    opacity: 0;
+
+    transition: opacity 1.2s ease;
+}
+
+
+#invitation.show-invitation {
+    opacity: 1;
+}
+
+
+/* ================================
+   GENERAL SECTION
+================================ */
+
+.section {
+    min-height: 70vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 80px 25px;
+
+    border-bottom: 1px solid #e2dcd3;
+
+    position: relative;
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    background-attachment: scroll;
+
+    opacity: 0;
+
+    transform: translateY(40px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+/* Sections become visible on scroll */
+
+.section.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* FIRST SECTION
+   Visible immediately after opening */
+
+#invitation > .section:first-child {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* White overlay */
+
+.section::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(255, 255, 255, 0.35);
+
+    z-index: 0;
+}
+
+
+/* Keep content above overlay */
+
+.section > * {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* Small heading */
+
+.section > p:first-child {
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: #9a8977;
+
+    margin-bottom: 15px;
+}
+
+
+/* Main heading */
+
+.section h2 {
+    font-size: clamp(30px, 7vw, 50px);
+
+    font-weight: normal;
+
+    line-height: 1.3;
+
+    margin: 15px 0 25px;
+
+    color: #403a35;
+}
+
+
+/* Paragraph */
+
+.section p {
+    max-width: 500px;
+
+    font-size: 16px;
+
+    color: #6d655d;
+}
+
+
+/* ================================
+   EVENT SECTION
+================================ */
+
+.section:nth-of-type(3) {
+    background-color: #eee7dc;
+}
+
+
+.section:nth-of-type(3) h2 {
+    margin-bottom: 10px;
+}
+
+
+/* ================================
+   COUNTDOWN
+================================ */
+
+#countdown {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+    flex-wrap: wrap;
+}
+
+
+#countdown div {
+    width: 75px;
+
+    padding: 15px 5px;
+
+    border: 1px solid #d1c5b5;
+
+    background: rgba(255, 255, 255, 0.4);
+}
+
+
+#countdown span {
+    display: block;
+
+    font-size: 28px;
+
+    color: #51483f;
+}
+
+
+#countdown small {
+    display: block;
+
+    margin-top: 5px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    color: #8b8177;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    padding: 90px 25px;
+
+    background: #3f3933;
+
+    color: white;
+}
+
+
+footer p {
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.8;
+}
+
+
+footer h2 {
+    margin-top: 15px;
+
+    font-size: 35px;
+
+    font-weight: normal;
+}
+
+
+/* ================================
+   RSVP FORM
+================================ */
+
+.rsvp-section {
+    background:
+        url("backgrounds/rsvp.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+
+#rsvpForm {
+    width: 100%;
+
+    max-width: 500px;
+
+    margin-top: 40px;
+
+    text-align: left;
+}
+
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+
+.form-group > label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    color: #6f6254;
+}
+
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #d4c8b8;
+
+    background: #fffdf9;
+
+    color: #403a35;
+
+    font-family: Georgia, serif;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #8b7965;
+}
+
+
+textarea {
+    resize: vertical;
+}
+
+
+.radio-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.radio-group label {
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    color: #5f574f;
+}
+
+
+.radio-group input {
+    margin-right: 8px;
+}
+
+
+.submit-button {
+    width: 100%;
+
+    margin-top: 5px;
+}
+
+
+.success-message {
+    display: none;
+
+    margin-top: 30px;
+
+    padding: 30px;
+
+    border: 1px solid #d4c8b8;
+
+    background: #fffdf9;
+}
+
+
+.success-message h3 {
+    font-size: 28px;
+
+    font-weight: normal;
+
+    margin-bottom: 10px;
+}
+
+
+/* ================================
+   GALLERY
+================================ */
+
+.gallery-section {
+    background:
+        url("backgrounds/gallery.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+
+.gallery {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin-top: 40px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+
+.gallery-item {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    background: #ddd;
+}
+
+
+.gallery-item img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.5s ease;
+}
+
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+
+/* First image bigger */
+
+.gallery-item:first-child {
+    grid-column: span 2;
+
+    aspect-ratio: 16 / 9;
+}
+
+
+/* ================================
+   SECTION BACKGROUNDS
+================================ */
+
+
+/* INTRO */
+
+#invitation > .section:nth-child(1) {
+    background-image:
+        url("backgrounds/intro.jpg");
+}
+
+
+/* COUPLE */
+
+#invitation > .section:nth-child(2) {
+    background-image:
+        url("backgrounds/couple.jpg");
+}
+
+
+/* EVENT */
+
+#invitation > .section:nth-child(3) {
+    background-image:
+        url("backgrounds/event.jpg");
+}
+
+
+/* COUNTDOWN */
+
+.countdown-section {
+    background-image:
+        url("backgrounds/countdown.jpg");
+}
+
+
+/* RSVP */
+
+.rsvp-section {
+    background-image:
+        url("backgrounds/rsvp.jpg");
+}
+
+
+/* ================================
+   LIGHTBOX
+================================ */
+
+.lightbox {
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.94);
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 9999;
+
+    padding: 30px;
+}
+
+
+/* Image */
+
+.lightbox img {
+    max-width: 85%;
+
+    max-height: 80vh;
+
+    object-fit: contain;
+
+    border-radius: 3px;
+
+    animation: lightboxFade 0.3s ease;
+}
+
+
+/* Fade animation */
+
+@keyframes lightboxFade {
+
+    from {
+        opacity: 0;
+
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+}
+
+
+/* Close */
+
+.lightbox-close {
+    position: absolute;
+
+    top: 20px;
+
+    right: 25px;
+
+    width: 45px;
+
+    height: 45px;
+
+    padding: 0;
+
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 40px;
+
+    line-height: 40px;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+
+.lightbox-close:hover {
+    background: transparent;
+
+    color: #ddd;
+}
+
+
+/* Previous + Next */
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 50px;
+
+    height: 70px;
+
+    padding: 0;
+
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 55px;
+
+    line-height: 60px;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+
+.lightbox-prev {
+    left: 20px;
+}
+
+
+.lightbox-next {
+    right: 20px;
+}
+
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: transparent;
+
+    color: #ddd;
+}
+
+
+/* Counter */
+
+.lightbox-counter {
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.8;
+}
+
+
+/* ================================
+   MUSIC BUTTON
+================================ */
+
+.music-button {
+    position: fixed;
+
+    bottom: 25px;
+
+    right: 25px;
+
+    width: 52px;
+
+    height: 52px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.15);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: transform 0.2s ease;
+}
+
+
+/* Playing animation */
+
+.music-button.playing {
+    animation:
+        musicSpin 3s linear infinite;
+}
+
+
+/* Spin */
+
+@keyframes musicSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* Hover */
+
+.music-button:hover {
+    transform: scale(1.1);
+}
+
+
+/* Press */
+
+.music-button:active {
+    transform: scale(0.95);
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .cover::before {
+        top: 15px;
+
+        left: 15px;
+
+        right: 15px;
+
+        bottom: 15px;
+    }
+
+
+    .cover-content {
+        padding: 40px 20px;
+    }
+
+
+    .cover h1 {
+        font-size: 45px;
+    }
+
+
+    .section {
+        min-height: 65vh;
+
+        padding: 70px 20px;
+    }
+
+
+    #countdown {
+        gap: 8px;
+    }
+
+
+    #countdown div {
+        width: 65px;
+    }
+
+
+    #countdown span {
+        font-size: 23px;
+    }
+
+
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+    }
+
+
+    .gallery-item:first-child {
+        grid-column: span 2;
+    }
+
+
+    .lightbox {
+        padding: 15px;
+    }
+
+
+    .lightbox img {
+        max-width: 90%;
+
+        max-height: 75vh;
+    }
+
+
+    .lightbox-prev,
+    .lightbox-next {
+        width: 40px;
+
+        font-size: 40px;
+    }
+
+
+    .lightbox-prev {
+        left: 5px;
+    }
+
+
+    .lightbox-next {
+        right: 5px;
+    }
+
+}
+/* =================================
+   INTRO TEXT ANIMATION
+================================= */
+
+#invitation > .section:first-child p,
+#invitation > .section:first-child h2 {
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+
+/* Small text */
+
+#invitation.show-invitation > .section:first-child p:first-child {
+    animation: introFadeUp 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+
+/* Main heading */
+
+#invitation.show-invitation > .section:first-child h2 {
+    animation: introFadeUp 1s ease forwards;
+    animation-delay: 0.8s;
+}
+
+
+/* Last paragraph */
+
+#invitation.show-invitation > .section:first-child p:last-child {
+    animation: introFadeUp 1s ease forwards;
+    animation-delay: 1.4s;
+}
+
+
+/* Animation */
+
+@keyframes introFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
