@@ -1,33 +1,79 @@
+```javascript
 /* =================================
    SUPABASE CONNECTION
 ================================= */
 
-const SUPABASE_URL =
-    "https://jxhadwdximyhgnydzyun.supabase.co";
+const SUPABASE_URL = "https://jxhadwdximyhgnydzyun.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_nJ5hl8_eX7onvXHAYjH5hw_TztMe41y";
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-    );
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 
 
 /* =================================
    MUSIC
 ================================= */
 
-const music =
-    document.getElementById(
-        "backgroundMusic"
-    );
+const music = document.getElementById("backgroundMusic");
+const musicButton = document.getElementById("musicButton");
 
-const musicButton =
-    document.getElementById(
-        "musicButton"
-    );
+let invitationOpened = false;
+let manuallyPaused = false;
+let musicWasPlayingBeforeLeaving = false;
+
+
+/* =================================
+   UPDATE MUSIC BUTTON
+================================= */
+
+function updateMusicButton() {
+
+    if (!musicButton || !music) {
+        return;
+    }
+
+    if (music.paused) {
+
+        musicButton.innerText = "🔇";
+        musicButton.classList.remove("playing");
+
+    } else {
+
+        musicButton.innerText = "🎵";
+        musicButton.classList.add("playing");
+
+    }
+
+}
+
+
+/* =================================
+   PLAY MUSIC
+================================= */
+
+function playMusic() {
+
+    if (!music) {
+        return;
+    }
+
+    music.play()
+        .then(function () {
+
+            updateMusicButton();
+
+        })
+        .catch(function (error) {
+
+            console.log("Music playback error:", error);
+
+        });
+
+}
 
 
 /* =================================
@@ -36,25 +82,11 @@ const musicButton =
 
 function openInvitation() {
 
-    const cover =
-        document.querySelector(
-            ".cover"
-        );
+    const cover = document.querySelector(".cover");
+    const invitation = document.getElementById("invitation");
 
-    const invitation =
-        document.getElementById(
-            "invitation"
-        );
-
-    const music =
-        document.getElementById(
-            "backgroundMusic"
-        );
-
-    const musicButton =
-        document.getElementById(
-            "musicButton"
-        );
+    invitationOpened = true;
+    manuallyPaused = false;
 
 
     /* ==============================
@@ -65,56 +97,18 @@ function openInvitation() {
 
         music.volume = 0.5;
 
-        music.play()
-            .then(function () {
-
-                console.log(
-                    "🎵 Music started"
-                );
-
-                if (musicButton) {
-
-                    musicButton.style.display =
-                        "flex";
-
-                    musicButton.innerText =
-                        "🎵";
-
-                    musicButton.classList.add(
-                        "playing"
-                    );
-
-                }
-
-            })
-            .catch(function (error) {
-
-                console.log(
-                    "Music could not start:",
-                    error
-                );
-
-                if (musicButton) {
-
-                    musicButton.style.display =
-                        "flex";
-
-                }
-
-            });
+        playMusic();
 
     }
 
 
     /* ==============================
-       COVER SWIPE UP
+       COVER ANIMATION
     ============================== */
 
     if (cover) {
 
-        cover.classList.add(
-            "opening"
-        );
+        cover.classList.add("opening");
 
     }
 
@@ -125,14 +119,11 @@ function openInvitation() {
 
     if (invitation) {
 
-        invitation.style.display =
-            "block";
+        invitation.style.display = "block";
 
         setTimeout(function () {
 
-            invitation.classList.add(
-                "show-invitation"
-            );
+            invitation.classList.add("show-invitation");
 
         }, 100);
 
@@ -157,49 +148,70 @@ function openInvitation() {
 
 if (musicButton && music) {
 
-    musicButton.addEventListener(
-        "click",
-        function () {
+    musicButton.addEventListener("click", function () {
 
-            if (music.paused) {
+        if (music.paused) {
 
-                music.play()
-                    .then(function () {
+            manuallyPaused = false;
 
-                        musicButton.innerText =
-                            "🎵";
+            playMusic();
 
-                        musicButton.classList.add(
-                            "playing"
-                        );
+        } else {
 
-                    })
-                    .catch(function (error) {
+            manuallyPaused = true;
 
-                        console.error(
-                            "Music playback error:",
-                            error
-                        );
+            music.pause();
 
-                    });
-
-            } else {
-
-                music.pause();
-
-                musicButton.innerText =
-                    "🔇";
-
-                musicButton.classList.remove(
-                    "playing"
-                );
-
-            }
+            updateMusicButton();
 
         }
-    );
+
+    });
 
 }
+
+
+/* =================================
+   AUTO PAUSE WHEN LEAVING WEBSITE
+================================= */
+
+document.addEventListener("visibilitychange", function () {
+
+    if (!invitationOpened || !music) {
+        return;
+    }
+
+
+    if (document.hidden) {
+
+        if (!music.paused) {
+
+            musicWasPlayingBeforeLeaving = true;
+
+            music.pause();
+
+            updateMusicButton();
+
+        } else {
+
+            musicWasPlayingBeforeLeaving = false;
+
+        }
+
+    } else {
+
+        if (
+            musicWasPlayingBeforeLeaving &&
+            !manuallyPaused
+        ) {
+
+            playMusic();
+
+        }
+
+    }
+
+});
 
 
 /* =================================
@@ -207,9 +219,7 @@ if (musicButton && music) {
 ================================= */
 
 const weddingDate =
-    new Date(
-        "May 31, 2026 11:00:00"
-    ).getTime();
+    new Date("May 31, 2026 11:00:00").getTime();
 
 
 const countdown =
@@ -222,14 +232,14 @@ const countdown =
             weddingDate - now;
 
 
+        /* Wedding date has passed */
+
         if (distance < 0) {
 
             clearInterval(countdown);
 
             const countdownElement =
-                document.getElementById(
-                    "countdown"
-                );
+                document.getElementById("countdown");
 
             if (countdownElement) {
 
@@ -239,6 +249,7 @@ const countdown =
             }
 
             return;
+
         }
 
 
@@ -280,44 +291,35 @@ const countdown =
 
 
         const daysElement =
-            document.getElementById(
-                "days"
-            );
+            document.getElementById("days");
 
         const hoursElement =
-            document.getElementById(
-                "hours"
-            );
+            document.getElementById("hours");
 
         const minutesElement =
-            document.getElementById(
-                "minutes"
-            );
+            document.getElementById("minutes");
 
         const secondsElement =
-            document.getElementById(
-                "seconds"
-            );
+            document.getElementById("seconds");
 
 
         if (daysElement) {
-            daysElement.innerText =
-                days;
+            daysElement.innerText = days;
         }
+
 
         if (hoursElement) {
-            hoursElement.innerText =
-                hours;
+            hoursElement.innerText = hours;
         }
+
 
         if (minutesElement) {
-            minutesElement.innerText =
-                minutes;
+            minutesElement.innerText = minutes;
         }
 
+
         if (secondsElement) {
-            secondsElement.innerText =
-                seconds;
+            secondsElement.innerText = seconds;
         }
 
     }, 1000);
@@ -328,14 +330,10 @@ const countdown =
 ================================= */
 
 const rsvpForm =
-    document.getElementById(
-        "rsvpForm"
-    );
+    document.getElementById("rsvpForm");
 
 const successMessage =
-    document.getElementById(
-        "successMessage"
-    );
+    document.getElementById("successMessage");
 
 
 if (rsvpForm) {
@@ -347,12 +345,16 @@ if (rsvpForm) {
             event.preventDefault();
 
 
+            /* NAME */
+
             const name =
                 document
                     .getElementById("name")
                     .value
                     .trim();
 
+
+            /* ATTENDANCE */
 
             const attendanceElement =
                 document.querySelector(
@@ -367,12 +369,15 @@ if (rsvpForm) {
                 );
 
                 return;
+
             }
 
 
             const attendance =
                 attendanceElement.value;
 
+
+            /* PAX */
 
             const pax =
                 parseInt(
@@ -382,6 +387,8 @@ if (rsvpForm) {
                 );
 
 
+            /* MESSAGE */
+
             const message =
                 document
                     .getElementById("message")
@@ -389,17 +396,23 @@ if (rsvpForm) {
                     .trim();
 
 
+            /* BUTTON */
+
             const submitButton =
                 rsvpForm.querySelector(
                     ".submit-button"
                 );
 
 
-            submitButton.disabled =
-                true;
+            submitButton.disabled = true;
 
             submitButton.innerText =
                 "SENDING...";
+
+
+            console.log(
+                "Sending RSVP..."
+            );
 
 
             try {
@@ -422,10 +435,12 @@ if (rsvpForm) {
                         error
                     );
 
+
                     alert(
                         "RSVP failed: " +
                         error.message
                     );
+
 
                     submitButton.disabled =
                         false;
@@ -434,12 +449,22 @@ if (rsvpForm) {
                         "SEND RSVP";
 
                     return;
+
                 }
 
+
+                console.log(
+                    "RSVP successfully submitted!"
+                );
+
+
+                /* Hide form */
 
                 rsvpForm.style.display =
                     "none";
 
+
+                /* Show success */
 
                 if (successMessage) {
 
@@ -455,9 +480,11 @@ if (rsvpForm) {
                     error
                 );
 
+
                 alert(
                     "Something went wrong. Please try again."
                 );
+
 
                 submitButton.disabled =
                     false;
@@ -500,11 +527,17 @@ galleryImages.forEach(
 let currentImage = 0;
 
 
-const lightbox =
-    document.getElementById(
-        "lightbox"
-    );
+/* =================================
+   LIGHTBOX ELEMENT
+================================= */
 
+const lightbox =
+    document.getElementById("lightbox");
+
+
+/* =================================
+   OPEN LIGHTBOX
+================================= */
 
 function openLightbox(imageSource) {
 
@@ -553,6 +586,10 @@ function openLightbox(imageSource) {
 }
 
 
+/* =================================
+   CLOSE LIGHTBOX
+================================= */
+
 function closeLightbox() {
 
     if (!lightbox) {
@@ -570,11 +607,13 @@ function closeLightbox() {
 }
 
 
+/* =================================
+   NEXT IMAGE
+================================= */
+
 function nextImage() {
 
-    if (
-        imageSources.length === 0
-    ) {
+    if (imageSources.length === 0) {
         return;
     }
 
@@ -597,11 +636,13 @@ function nextImage() {
 }
 
 
+/* =================================
+   PREVIOUS IMAGE
+================================= */
+
 function previousImage() {
 
-    if (
-        imageSources.length === 0
-    ) {
+    if (imageSources.length === 0) {
         return;
     }
 
@@ -621,6 +662,10 @@ function previousImage() {
 
 }
 
+
+/* =================================
+   SHOW CURRENT IMAGE
+================================= */
 
 function showCurrentImage() {
 
@@ -642,6 +687,10 @@ function showCurrentImage() {
 
 }
 
+
+/* =================================
+   UPDATE COUNTER
+================================= */
 
 function updateCounter() {
 
@@ -678,9 +727,12 @@ document.addEventListener(
             lightbox.style.display !==
             "flex"
         ) {
+
             return;
         }
 
+
+        /* LEFT */
 
         if (
             event.key ===
@@ -692,6 +744,8 @@ document.addEventListener(
         }
 
 
+        /* RIGHT */
+
         if (
             event.key ===
             "ArrowRight"
@@ -701,6 +755,8 @@ document.addEventListener(
 
         }
 
+
+        /* ESC */
 
         if (
             event.key ===
@@ -716,16 +772,16 @@ document.addEventListener(
 
 
 /* =================================
-   SECTION BLUR ON SCROLL
+   SCROLL ANIMATION
 ================================= */
 
 const sections =
     document.querySelectorAll(
-        "#invitation > .section"
+        ".section"
     );
 
 
-const sectionObserver =
+const observer =
     new IntersectionObserver(
 
         function (entries) {
@@ -738,13 +794,7 @@ const sectionObserver =
                     ) {
 
                         entry.target.classList.add(
-                            "active"
-                        );
-
-                    } else {
-
-                        entry.target.classList.remove(
-                            "active"
+                            "show"
                         );
 
                     }
@@ -755,7 +805,7 @@ const sectionObserver =
         },
 
         {
-            threshold: 0.45
+            threshold: 0.15
         }
 
     );
@@ -764,9 +814,7 @@ const sectionObserver =
 sections.forEach(
     function (section) {
 
-        sectionObserver.observe(
-            section
-        );
+        observer.observe(section);
 
     }
 );
@@ -777,7 +825,6 @@ sections.forEach(
 ================================= */
 
 let touchStartX = 0;
-
 let touchEndX = 0;
 
 
@@ -811,12 +858,18 @@ if (lightbox) {
 }
 
 
+/* =================================
+   HANDLE SWIPE
+================================= */
+
 function handleSwipe() {
 
     const swipeDistance =
         touchEndX -
         touchStartX;
 
+
+    /* Swipe LEFT */
 
     if (
         swipeDistance < -50
@@ -827,6 +880,8 @@ function handleSwipe() {
     }
 
 
+    /* Swipe RIGHT */
+
     if (
         swipeDistance > 50
     ) {
@@ -836,3 +891,4 @@ function handleSwipe() {
     }
 
 }
+```
