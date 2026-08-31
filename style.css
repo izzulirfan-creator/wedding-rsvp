@@ -1048,3 +1048,72 @@ textarea {
     }
 
 }
+/* =================================
+   COUPLE NAME ANIMATION
+================================= */
+
+.couple-section .couple-left,
+.couple-section .couple-right {
+    display: inline-block;
+    opacity: 0;
+}
+
+.couple-section .couple-left {
+    transform: translateX(-100px);
+}
+
+.couple-section .couple-right {
+    transform: translateX(100px);
+}
+
+.couple-section .couple-ampersand {
+    display: inline-block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* When couple section is visible */
+
+.couple-section.active .couple-left {
+    animation: izzulSlideIn 1s ease forwards;
+}
+
+.couple-section.active .couple-right {
+    animation: hannaSlideIn 1s ease forwards;
+    animation-delay: 0.2s;
+}
+
+
+/* Izzul */
+
+@keyframes izzulSlideIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+/* Hanna */
+
+@keyframes hannaSlideIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
