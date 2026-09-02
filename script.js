@@ -332,7 +332,7 @@ document.addEventListener(
 
 const weddingDate =
     new Date(
-        "May 31, 2026 11:00:00"
+        "December 25, 2026 11:00:00"
     ).getTime();
 
 
