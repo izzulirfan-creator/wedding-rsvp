@@ -905,26 +905,31 @@ textarea {
 #invitation > .section:first-child p,
 #invitation > .section:first-child h2 {
     opacity: 0;
-
-    transform: translateY(25px);
+    transform: translateY(50px);
 }
 
+
+/* WITH JOYFUL HEARTS */
 
 #invitation.show-invitation > .section:first-child p:first-child {
     animation:
         introFadeUp 1s ease forwards;
 
-    animation-delay: 0.3s;
+    animation-delay: 0.4s;
 }
 
+
+/* WE INVITE YOU TO CELEBRATE WITH US */
 
 #invitation.show-invitation > .section:first-child h2 {
     animation:
         introFadeUp 1s ease forwards;
 
-    animation-delay: 0.8s;
+    animation-delay: 0.9s;
 }
 
+
+/* JOIN US AS WE BEGIN... */
 
 #invitation.show-invitation > .section:first-child p:last-child {
     animation:
@@ -934,11 +939,15 @@ textarea {
 }
 
 
+/* =================================
+   INTRO FADE UP
+================================= */
+
 @keyframes introFadeUp {
 
     from {
         opacity: 0;
-        transform: translateY(25px);
+        transform: translateY(50px);
     }
 
     to {
