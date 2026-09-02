@@ -876,6 +876,44 @@ const sectionObserver =
                             "active"
                         );
 
+
+                        /* ==========================
+                           REPLAY TEXT ANIMATION
+                        ========================== */
+
+                        const animatedElements =
+                            entry.target.querySelectorAll(
+                                "p, h2, h3"
+                            );
+
+
+                        animatedElements.forEach(
+                            function (element) {
+
+                                /* Reset animation */
+
+                                element.style.animation =
+                                    "none";
+
+
+                                /*
+                                   Force browser to
+                                   recalculate layout
+                                   before replaying.
+                                */
+
+                                element.offsetHeight;
+
+
+                                /* Replay animation */
+
+                                element.style.animation =
+                                    "";
+
+                            }
+                        );
+
+
                     } else {
 
                         entry.target.classList.remove(
