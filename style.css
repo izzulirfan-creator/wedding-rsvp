@@ -1,0 +1,1730 @@
+/* ================================
+   BASIC RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #f8f4ed;
+    color: #3d3935;
+    text-align: center;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+
+/* ================================
+   COVER
+================================ */
+
+.cover {
+    min-height: 100vh;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            rgba(248, 244, 237, 0.55),
+            rgba(248, 244, 237, 0.55)
+        ),
+        url("backgrounds/cover.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+
+    transition:
+        transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+
+    z-index: 10;
+}
+
+
+/* ================================
+   COVER OPENING
+================================ */
+
+.cover.opening {
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
+
+/* Decorative border */
+
+.cover::before {
+    content: "";
+
+    position: absolute;
+
+    top: 25px;
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
+
+    border: 1px solid #b9a58b;
+
+    pointer-events: none;
+}
+
+
+/* Cover content */
+
+.cover-content {
+    max-width: 600px;
+
+    padding: 50px 30px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* Small title */
+
+.small-text {
+    font-size: 12px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 25px;
+
+    color: #8b7965;
+}
+
+
+/* Couple name */
+
+.cover h1 {
+    font-size: clamp(45px, 10vw, 75px);
+
+    font-weight: normal;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+
+    color: #39332e;
+}
+
+
+/* Date */
+
+.cover p:not(.small-text) {
+    font-size: 15px;
+
+    letter-spacing: 3px;
+
+    color: #776b5f;
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+button,
+.button {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 14px 30px;
+
+    border: 1px solid #6f6254;
+
+    background: #6f6254;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+button:hover,
+.button:hover {
+    background: transparent;
+    color: #6f6254;
+}
+
+
+/* ================================
+   INVITATION
+================================ */
+
+#invitation {
+    display: none;
+
+    opacity: 0;
+
+    transition: opacity 0.8s ease;
+
+    width: 100%;
+}
+
+
+#invitation.show-invitation {
+    opacity: 1;
+}
+
+
+/* ================================
+   GENERAL SECTION
+================================ */
+
+.section {
+    min-height: 70vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 80px 25px;
+
+    border-bottom: 1px solid #e2dcd3;
+
+    position: relative;
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    background-attachment: scroll;
+
+    opacity: 0.45;
+
+    filter: blur(5px);
+
+    transition:
+        opacity 0.7s ease,
+        filter 0.7s ease;
+}
+
+
+/* ================================
+   ACTIVE SECTION
+================================ */
+
+.section.active {
+    opacity: 1;
+
+    filter: blur(0);
+}
+
+
+/* First section starts active */
+
+#invitation > .section:first-child {
+    min-height: 100vh;
+    height: 100vh;
+
+    opacity: 1;
+
+    filter: blur(0);
+
+    transform: translateY(0);
+}
+
+
+/* ================================
+   SECTION OVERLAY
+================================ */
+
+.section::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(255, 255, 255, 0.35);
+
+    z-index: 0;
+}
+
+
+/* Keep content above overlay */
+
+.section > * {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* ================================
+   SMALL HEADING
+================================ */
+
+.section > p:first-child {
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: #9a8977;
+
+    margin-bottom: 15px;
+}
+
+
+/* ================================
+   MAIN HEADING
+================================ */
+
+.section h2 {
+    font-size: clamp(30px, 7vw, 50px);
+
+    font-weight: normal;
+
+    line-height: 1.3;
+
+    margin: 15px 0 25px;
+
+    color: #403a35;
+}
+
+
+/* ================================
+   PARAGRAPH
+================================ */
+
+.section p {
+    max-width: 500px;
+
+    font-size: 16px;
+
+    color: #6d655d;
+}
+
+
+/* ================================
+   EVENT SECTION
+================================ */
+
+.section:nth-of-type(3) {
+    background-color: #eee7dc;
+}
+
+
+.section:nth-of-type(3) h2 {
+    margin-bottom: 10px;
+}
+/* =================================
+   WEDDING RECEPTION TEXT ANIMATION
+================================ */
+
+.section:nth-of-type(3) > p,
+.section:nth-of-type(3) h2 {
+    opacity: 0;
+}
+
+
+/* WEDDING RECEPTION */
+
+.section:nth-of-type(3) > p:first-child {
+    transform: translateY(-50px);
+
+    animation:
+        eventFromTop 1s ease forwards;
+
+    animation-delay: 0.2s;
+}
+
+
+/* 31 MAY 2026 */
+
+.section:nth-of-type(3) h2 {
+    transform: translateY(-50px);
+
+    animation:
+        eventFromTop 1s ease forwards;
+
+    animation-delay: 0.6s;
+}
+
+
+/* 11:00 AM – 4:00 PM */
+
+.section:nth-of-type(3) > p:nth-of-type(2) {
+    transform: translateX(-70px);
+
+    animation:
+        eventFromLeft 1s ease forwards;
+
+    animation-delay: 1s;
+}
+
+
+/* VICTORIA HALL */
+
+.section:nth-of-type(3) > p:nth-of-type(3) {
+    transform: translateX(-70px);
+
+    animation:
+        eventFromLeft 1s ease forwards;
+
+    animation-delay: 1.3s;
+}
+
+
+/* SHAH ALAM */
+
+.section:nth-of-type(3) > p:nth-of-type(4) {
+    transform: translateX(-70px);
+
+    animation:
+        eventFromLeft 1s ease forwards;
+
+    animation-delay: 1.6s;
+}
+
+
+/* =================================
+   EVENT KEYFRAMES
+================================= */
+
+@keyframes eventFromTop {
+
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes eventFromLeft {
+
+    from {
+        opacity: 0;
+        transform: translateX(-70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+/* ================================
+   COUNTDOWN
+================================ */
+
+#countdown {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+    flex-wrap: wrap;
+}
+
+
+#countdown div {
+    width: 75px;
+
+    padding: 15px 5px;
+
+    border: 1px solid #d1c5b5;
+
+    background: rgba(255, 255, 255, 0.4);
+}
+
+
+#countdown span {
+    display: block;
+
+    font-size: 28px;
+
+    color: #51483f;
+}
+
+
+#countdown small {
+    display: block;
+
+    margin-top: 5px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    color: #8b8177;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    padding: 90px 25px;
+
+    background: #3f3933;
+
+    color: white;
+}
+
+
+footer p {
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.8;
+}
+
+
+footer h2 {
+    margin-top: 15px;
+
+    font-size: 35px;
+
+    font-weight: normal;
+}
+
+
+/* ================================
+   RSVP FORM
+================================ */
+
+.rsvp-section {
+    background:
+        url("backgrounds/rsvp.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+
+#rsvpForm {
+    width: 100%;
+
+    max-width: 500px;
+
+    margin-top: 40px;
+
+    text-align: left;
+}
+
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+
+.form-group > label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    color: #6f6254;
+}
+
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #d4c8b8;
+
+    background: #fffdf9;
+
+    color: #403a35;
+
+    font-family: Georgia, serif;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #8b7965;
+}
+
+
+textarea {
+    resize: vertical;
+}
+
+
+.radio-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.radio-group label {
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    color: #5f574f;
+}
+
+
+.radio-group input {
+    margin-right: 8px;
+}
+
+
+.submit-button {
+    width: 100%;
+
+    margin-top: 5px;
+}
+
+
+.success-message {
+    display: none;
+
+    margin-top: 30px;
+
+    padding: 30px;
+
+    border: 1px solid #d4c8b8;
+
+    background: #fffdf9;
+}
+
+
+.success-message h3 {
+    font-size: 28px;
+
+    font-weight: normal;
+
+    margin-bottom: 10px;
+}
+
+
+/* ================================
+   GALLERY
+================================ */
+
+.gallery-section {
+    background:
+        url("backgrounds/gallery.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+
+.gallery {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin-top: 40px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+
+.gallery-item {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    background: #ddd;
+}
+
+
+.gallery-item img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.5s ease;
+}
+
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+
+.gallery-item:first-child {
+    grid-column: span 2;
+
+    aspect-ratio: 16 / 9;
+}
+
+
+/* ================================
+   SECTION BACKGROUNDS
+================================ */
+
+#invitation > .section:nth-child(1) {
+    background-image:
+        url("backgrounds/intro.jpg");
+}
+
+
+#invitation > .section:nth-child(2) {
+    background-image:
+        url("backgrounds/couple.jpg");
+}
+
+
+#invitation > .section:nth-child(3) {
+    background-image:
+        url("backgrounds/event.jpg");
+}
+
+
+.countdown-section {
+    background-image:
+        url("backgrounds/countdown.jpg");
+}
+
+
+.rsvp-section {
+    background-image:
+        url("backgrounds/rsvp.jpg");
+}
+
+
+/* ================================
+   LIGHTBOX
+================================ */
+
+.lightbox {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.94);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    padding: 30px;
+}
+
+
+.lightbox img {
+    max-width: 85%;
+    max-height: 80vh;
+
+    object-fit: contain;
+
+    border-radius: 3px;
+
+    animation: lightboxFade 0.3s ease;
+}
+
+
+@keyframes lightboxFade {
+
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+.lightbox-close {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    width: 45px;
+    height: 45px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 40px;
+
+    line-height: 40px;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+
+.lightbox-close:hover {
+    background: transparent;
+    color: #ddd;
+}
+
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 50px;
+    height: 70px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 55px;
+
+    line-height: 60px;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+
+.lightbox-prev {
+    left: 20px;
+}
+
+
+.lightbox-next {
+    right: 20px;
+}
+
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: transparent;
+    color: #ddd;
+}
+
+
+.lightbox-counter {
+    position: absolute;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.8;
+}
+
+
+/* ================================
+   MUSIC BUTTON
+================================ */
+
+.music-button {
+    position: fixed;
+
+    bottom: 25px;
+    right: 25px;
+
+    width: 52px;
+    height: 52px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.15);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 0.2s ease;
+}
+
+
+.music-button.playing {
+    animation:
+        musicSpin 3s linear infinite;
+}
+
+
+@keyframes musicSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+.music-button:hover {
+    transform: scale(1.1);
+}
+
+
+.music-button:active {
+    transform: scale(0.95);
+}
+
+
+/* ================================
+   INTRO TEXT ANIMATION
+================================ */
+
+#invitation > .section:first-child p,
+#invitation > .section:first-child h2 {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+
+/* WITH JOYFUL HEARTS */
+
+#invitation.show-invitation > .section:first-child p:first-child {
+    animation:
+        introFadeUp 1s ease forwards;
+
+    animation-delay: 0.4s;
+}
+
+
+/* WE INVITE YOU TO CELEBRATE WITH US */
+
+#invitation.show-invitation > .section:first-child h2 {
+    animation:
+        introFadeUp 1s ease forwards;
+
+    animation-delay: 0.9s;
+}
+
+
+/* JOIN US AS WE BEGIN... */
+
+#invitation.show-invitation > .section:first-child p:last-child {
+    animation:
+        introFadeUp 1s ease forwards;
+
+    animation-delay: 1.4s;
+}
+
+
+/* =================================
+   INTRO FADE UP
+================================= */
+
+@keyframes introFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .cover {
+        padding: 20px;
+    }
+
+
+    .cover::before {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+    }
+
+
+    .cover-content {
+        padding: 40px 20px;
+    }
+
+
+    .cover h1 {
+        font-size: 45px;
+    }
+
+
+    .section {
+        min-height: 65vh;
+
+        padding: 70px 20px;
+
+        filter: blur(5px);
+    }
+
+
+    #invitation > .section:first-child {
+        min-height: 100vh;
+        height: 100vh;
+    }
+
+
+    #countdown {
+        gap: 8px;
+    }
+
+
+    #countdown div {
+        width: 65px;
+    }
+
+
+    #countdown span {
+        font-size: 23px;
+    }
+
+
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+    }
+
+
+    .gallery-item:first-child {
+        grid-column: span 2;
+    }
+
+
+    .lightbox {
+        padding: 15px;
+    }
+
+
+    .lightbox img {
+        max-width: 90%;
+        max-height: 75vh;
+    }
+
+
+    .lightbox-prev,
+    .lightbox-next {
+        width: 40px;
+        font-size: 40px;
+    }
+
+
+    .lightbox-prev {
+        left: 5px;
+    }
+
+
+    .lightbox-next {
+        right: 5px;
+    }
+
+}
+/* =================================
+   COUPLE NAME ANIMATION
+================================= */
+
+.couple-section .couple-left,
+.couple-section .couple-right {
+    display: inline-block;
+    opacity: 0;
+}
+
+.couple-section .couple-left {
+    transform: translateX(-100px);
+}
+
+.couple-section .couple-right {
+    transform: translateX(100px);
+}
+
+.couple-section .couple-ampersand {
+    display: inline-block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* When couple section is visible */
+
+.couple-section.active .couple-left {
+    animation: izzulSlideIn 1s ease forwards;
+}
+
+.couple-section.active .couple-right {
+    animation: hannaSlideIn 1s ease forwards;
+    animation-delay: 0.2s;
+}
+
+
+/* Izzul */
+
+@keyframes izzulSlideIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+/* Hanna */
+
+@keyframes hannaSlideIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+/* =================================
+   COVER TEXT ANIMATION
+================================= */
+
+/* THE WEDDING OF */
+
+.cover .small-text {
+    opacity: 0;
+    transform: translateY(-40px);
+
+    animation:
+        coverFromTop 1s ease forwards;
+
+    animation-delay: 0.3s;
+}
+
+
+/* IZZUL */
+
+.cover .name-izzul {
+    display: inline-block;
+
+    opacity: 0;
+    transform: translateX(-80px);
+
+    animation:
+        coverFromLeft 1s ease forwards;
+
+    animation-delay: 0.6s;
+}
+
+
+/* & */
+
+.cover .name-ampersand {
+    display: inline-block;
+
+    opacity: 0;
+
+    animation:
+        coverAmpersand 0.8s ease forwards;
+
+    animation-delay: 0.9s;
+}
+
+
+/* HANNA */
+
+.cover .name-hanna {
+    display: inline-block;
+
+    opacity: 0;
+    transform: translateX(80px);
+
+    animation:
+        coverFromRight 1s ease forwards;
+
+    animation-delay: 0.6s;
+}
+
+
+/* DATE */
+
+.cover p:not(.small-text) {
+    opacity: 0;
+    transform: translateY(40px);
+
+    animation:
+        coverFromBottom 1s ease forwards;
+
+    animation-delay: 1.1s;
+}
+
+
+/* =================================
+   COVER KEYFRAMES
+================================= */
+
+@keyframes coverFromTop {
+
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes coverFromLeft {
+
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes coverAmpersand {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes coverFromRight {
+
+    from {
+        opacity: 0;
+        transform: translateX(80px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes coverFromBottom {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+/* =================================
+   COUNTDOWN TEXT ANIMATION
+================================= */
+
+/* COUNTDOWN TO OUR DAY */
+
+.countdown-section > p:first-child {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+.countdown-section.active > p:first-child {
+    animation:
+        countdownFromTop 1s ease forwards;
+
+    animation-delay: 0.2s;
+}
+
+
+/* COUNTING DOWN TO FOREVER */
+
+.countdown-section h2 {
+    opacity: 0;
+}
+
+.countdown-section.active h2 {
+    animation:
+        countdownFadeIn 1s ease forwards;
+
+    animation-delay: 0.7s;
+}
+
+
+/* COUNTDOWN NUMBERS + LABELS */
+
+.countdown-section #countdown {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.countdown-section.active #countdown {
+    animation:
+        countdownFromBottom 1s ease forwards;
+
+    animation-delay: 1.1s;
+}
+
+
+/* =================================
+   COUNTDOWN KEYFRAMES
+================================= */
+
+@keyframes countdownFromTop {
+
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes countdownFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes countdownFromBottom {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+/* =================================
+   GALLERY TEXT ANIMATION
+================================= */
+
+/* OUR MOMENTS */
+
+.gallery-section > p:first-child {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+.gallery-section.active > p:first-child {
+    animation:
+        galleryFromTop 1s ease forwards;
+
+    animation-delay: 0.2s;
+}
+
+
+/* A LITTLE GLIMPSE... */
+
+.gallery-section h2 {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.gallery-section.active h2 {
+    animation:
+        galleryFromBottom 1s ease forwards;
+
+    animation-delay: 0.7s;
+}
+
+
+/* =================================
+   GALLERY KEYFRAMES
+================================= */
+
+@keyframes galleryFromTop {
+
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes galleryFromBottom {
+
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+/* =================================
+   PREMIUM HAPPY COUPLE
+================================= */
+
+.couple-portraits {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 35px;
+
+    margin-top: 25px;
+
+    width: 100%;
+}
+
+
+/* PERSON */
+
+.couple-person {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    opacity: 0;
+}
+
+
+/* PHOTO FRAME */
+
+.couple-frame {
+    width: 180px;
+    height: 230px;
+
+    overflow: hidden;
+
+    border: 1px solid #d1c3b2;
+
+    background: #eee8df;
+}
+
+
+.couple-frame img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* NAMES */
+
+.couple-person h3 {
+    margin-top: 15px;
+
+    font-size: 24px;
+
+    font-weight: normal;
+
+    color: #403a35;
+}
+
+
+/* AMPERSAND */
+
+.couple-ampersand {
+    font-size: 32px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #8b7965;
+
+    opacity: 0;
+}
+
+
+/* =================================
+   COUPLE ANIMATION
+================================= */
+
+.couple-section.active
+.couple-person-left {
+
+    animation:
+        coupleFromLeft 1s ease forwards;
+
+    animation-delay: 0.3s;
+}
+
+
+.couple-section.active
+.couple-ampersand {
+
+    animation:
+        coupleFadeIn 0.8s ease forwards;
+
+    animation-delay: 0.8s;
+}
+
+
+.couple-section.active
+.couple-person-right {
+
+    animation:
+        coupleFromRight 1s ease forwards;
+
+    animation-delay: 0.5s;
+}
+
+
+/* =================================
+   KEYFRAMES
+================================= */
+
+@keyframes coupleFromLeft {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+@keyframes coupleFromRight {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+@keyframes coupleFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .couple-portraits {
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .couple-frame {
+        width: 180px;
+        height: 230px;
+    }
+
+    .couple-person h3 {
+        font-size: 21px;
+        margin-top: 12px;
+    }
+
+    .couple-ampersand {
+        font-size: 28px;
+        margin-top: 0;
+    }
+
+}
