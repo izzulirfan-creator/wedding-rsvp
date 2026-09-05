@@ -239,12 +239,9 @@ button:hover,
 
     filter: blur(5px);
 
-    transform: translateY(20px);
-
     transition:
         opacity 0.7s ease,
-        filter 0.7s ease,
-        transform 0.7s ease;
+        filter 0.7s ease;
 }
 
 
@@ -256,8 +253,6 @@ button:hover,
     opacity: 1;
 
     filter: blur(0);
-
-    transform: translateY(0);
 }
 
 
@@ -1532,6 +1527,204 @@ textarea {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+
+}
+/* =================================
+   PREMIUM HAPPY COUPLE
+================================= */
+
+.couple-portraits {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 35px;
+
+    margin-top: 25px;
+
+    width: 100%;
+}
+
+
+/* PERSON */
+
+.couple-person {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    opacity: 0;
+}
+
+
+/* PHOTO FRAME */
+
+.couple-frame {
+    width: 180px;
+    height: 230px;
+
+    overflow: hidden;
+
+    border: 1px solid #d1c3b2;
+
+    background: #eee8df;
+}
+
+
+.couple-frame img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* NAMES */
+
+.couple-person h3 {
+    margin-top: 15px;
+
+    font-size: 24px;
+
+    font-weight: normal;
+
+    color: #403a35;
+}
+
+
+/* AMPERSAND */
+
+.couple-ampersand {
+    font-size: 32px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #8b7965;
+
+    opacity: 0;
+}
+
+
+/* =================================
+   COUPLE ANIMATION
+================================= */
+
+.couple-section.active
+.couple-person-left {
+
+    animation:
+        coupleFromLeft 1s ease forwards;
+
+    animation-delay: 0.3s;
+}
+
+
+.couple-section.active
+.couple-ampersand {
+
+    animation:
+        coupleFadeIn 0.8s ease forwards;
+
+    animation-delay: 0.8s;
+}
+
+
+.couple-section.active
+.couple-person-right {
+
+    animation:
+        coupleFromRight 1s ease forwards;
+
+    animation-delay: 0.5s;
+}
+
+
+/* =================================
+   KEYFRAMES
+================================= */
+
+@keyframes coupleFromLeft {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+@keyframes coupleFromRight {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+@keyframes coupleFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .couple-portraits {
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .couple-frame {
+        width: 180px;
+        height: 230px;
+    }
+
+    .couple-person h3 {
+        font-size: 21px;
+        margin-top: 12px;
+    }
+
+    .couple-ampersand {
+        font-size: 28px;
+        margin-top: 0;
     }
 
 }
