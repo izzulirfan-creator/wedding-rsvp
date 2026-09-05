@@ -1566,12 +1566,11 @@ textarea {
 .couple-frame {
     width: 180px;
     height: 230px;
-
     overflow: hidden;
-
     border: 1px solid #d1c3b2;
-
     background: #eee8df;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
 }
 
 
