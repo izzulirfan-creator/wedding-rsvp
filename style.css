@@ -198,6 +198,8 @@ button:hover,
     transition: opacity 0.8s ease;
 
     width: 100%;
+    overflow-x: hidden;
+
 }
 /* Continuous Sakura background for Intro + Couple */
 
