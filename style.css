@@ -422,9 +422,9 @@ overflow-x: hidden;
 
 .intro-section .ring-decoration {
     position: absolute;
-    width: 75px;
+    width: 120px;
     height: auto;
-    top: 30%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -150px) rotate(-25deg);
     opacity: 0;
