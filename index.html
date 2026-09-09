@@ -1,746 +1,2163 @@
-<!DOCTYPE html>
-<html lang="en">
+/* ================================
+   BASIC RESET
+================================ */
 
-<head>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <meta charset="UTF-8">
+html {
+    scroll-behavior: smooth;
+}
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #f8f4ed;
+    color: #3d3935;
+    text-align: center;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-    <title>Izzul & Hanna | Wedding Invitation</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css">
+/* ================================
+   COVER
+================================ */
 
-</head>
+.cover {
+    min-height: 100vh;
+    height: 100vh;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-<body>
+    padding: 30px;
 
+    background:
+        linear-gradient(
+            rgba(248, 244, 237, 0.55),
+            rgba(248, 244, 237, 0.55)
+        ),
+        url("backgrounds/cover.jpg");
 
-    <!-- =================================
-         COVER
-    ================================= -->
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-    <section class="cover">
+    position: fixed;
 
-        <div class="cover-content">
+    top: 0;
+    left: 0;
 
-            <p class="small-text">
-                THE WEDDING OF
-            </p>
+    width: 100%;
+    height: 100vh;
 
-            <h1 class="couple-name">
+    opacity: 1;
+    visibility: visible;
 
-                <span class="name-izzul">
-                    Izzul
-                </span>
+    transform: translateY(0);
 
-                <span class="name-ampersand">
-                    &amp;
-                </span>
+    transition:
+        transform 1s cubic-bezier(0.77, 0, 0.175, 1);
 
-                <span class="name-hanna">
-                    Hanna
-                </span>
+    z-index: 10;
+}
 
-            </h1>
 
-            <p>
-                31 MAY 2026
-            </p>
+/* ================================
+   COVER OPENING
+================================ */
 
-            <button onclick="openInvitation()">
-                OPEN INVITATION
-            </button>
+.cover.opening {
+    transform: translateY(-100%);
+    pointer-events: none;
+}
 
-        </div>
 
-    </section>
+/* Decorative border */
 
+.cover::before {
+    content: "";
 
+    position: absolute;
 
-    <!-- =================================
-         MAIN INVITATION
-    ================================= -->
+    top: 25px;
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
 
-    <main id="invitation">
+    border: 1px solid #b9a58b;
 
+    pointer-events: none;
+}
 
-        <!-- =================================
-             INTRO
-        ================================= -->
 
-<section class="section intro-section">
-    <img
-    src="images/ring.png"
-    class="ring-decoration"
-    alt="">
+/* Cover content */
 
-    <!-- SAKURA TOP LEFT -->
+.cover-content {
+    max-width: 600px;
 
-    <img
-        src="images/sakura 1.png"
-        class="sakura sakura-top-left"
-        alt="">
+    padding: 50px 30px;
 
+    position: relative;
 
-    <!-- SAKURA BOTTOM RIGHT -->
+    z-index: 2;
+}
 
-    <img
-        src="images/sakura.png"
-        class="sakura sakura-bottom-right"
-        alt="">
 
+/* Small title */
 
-    <p>
-        With joyful hearts
-    </p>
+.small-text {
+    font-size: 12px;
 
-    <h2>
-        We invite you<br>
-        to celebrate with us
-    </h2>
+    letter-spacing: 5px;
 
-    <p>
-        Join us as we begin
-        our new journey together.
-    </p>
+    margin-bottom: 25px;
 
-</section>
+    color: #8b7965;
+}
 
 
+/* Couple name */
 
-        <!-- =================================
-             COUPLE
-        ================================= -->
+.cover h1 {
+    font-size: clamp(45px, 10vw, 75px);
 
-<section class="section couple-section">
+    font-weight: normal;
 
-<img
-    src="images/cloud.png"
-    class="cloud-decoration"
-    alt="">
-<img
-    src="images/sakura branch.png"
-    class="sakura-branch"
-    alt="">
+    letter-spacing: 2px;
 
-<img
-    src="images/sakura branch flower.png"
-    class="sakura-branch-flower"
-    alt="">
-<img
-    src="images/sakura branch 1.png"
-    class="sakura-branch-left"
-    alt="">
+    margin-bottom: 20px;
 
-<img
-    src="images/sakura branch flower 1.png"
-    class="sakura-branch-flower-left"
-    alt="">
-            
-    <p>
-        THE HAPPY COUPLE
-    </p>
+    color: #39332e;
+}
 
 
-    <div class="couple-portraits">
+/* Date */
 
+.cover p:not(.small-text) {
+    font-size: 15px;
 
-        <!-- IZZUL -->
+    letter-spacing: 3px;
 
-        <div class="couple-person couple-person-left">
+    color: #776b5f;
+}
 
-            <div class="couple-frame">
 
-                <img
-                    src="couple/izzul.jpg"
-                    alt="Izzul">
+/* ================================
+   BUTTON
+================================ */
 
-            </div>
+button,
+.button {
+    display: inline-block;
 
-            <h3>
-                Izzul
-            </h3>
+    margin-top: 30px;
 
-        </div>
+    padding: 14px 30px;
 
+    border: 1px solid #6f6254;
 
-        <!-- AMPERSAND -->
+    background: #6f6254;
 
-        <div class="couple-ampersand">
-            &amp;
-        </div>
+    color: white;
 
+    text-decoration: none;
 
-        <!-- HANNA -->
+    font-family: Arial, sans-serif;
 
-        <div class="couple-person couple-person-right">
+    font-size: 11px;
 
-            <div class="couple-frame">
+    letter-spacing: 2px;
 
-                <img
-                    src="couple/hanna.jpg"
-                    alt="Hanna">
+    cursor: pointer;
 
-            </div>
+    transition: all 0.3s ease;
+}
 
-            <h3>
-                Hanna
-            </h3>
 
-        </div>
+button:hover,
+.button:hover {
+    background: transparent;
+    color: #6f6254;
+}
 
 
-    </div>
+/* ================================
+   INVITATION
+================================ */
 
-</section>
+#invitation {
+    display: none;
 
+    opacity: 0;
 
+    transition: opacity 0.8s ease;
 
-        <!-- =================================
-             EVENT
-        ================================= -->
+    width: 100%;
+}
+/* Continuous Sakura background for Intro + Couple */
 
-        <section class="section">
+#invitation {
+    position: relative;
+    isolation: isolate;
+}
 
-            <p>
-                WEDDING RECEPTION
-            </p>
 
-            <h2>
-                31 May 2026
-            </h2>
+#invitation > .section:nth-child(1),
+#invitation > .section:nth-child(2) {
+    background-color: transparent;
+}
 
-            <p>
-                11:00 AM – 4:00 PM
-            </p>
 
-            <p>
-                Victoria Hall<br>
-                Shah Alam
-            </p>
+#invitation.show-invitation {
+    opacity: 1;
+}
 
 
-            <a
-                class="button"
-                href="https://www.google.com/maps/search/?api=1&query=Victoria+Hall+Shah+Alam"
-                target="_blank">
+/* ================================
+   GENERAL SECTION
+================================ */
 
-                VIEW LOCATION
+.section {
+    min-height: 70vh;
 
-            </a>
+    display: flex;
 
+    flex-direction: column;
 
-            <a
-                class="button calendar-button"
-                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Izzul%20%26%20Hanna%20Wedding&dates=20260531T030000Z/20260531T080000Z&details=We%20would%20love%20to%20celebrate%20with%20you!&location=Victoria%20Hall%2C%20Shah%20Alam"
-                target="_blank">
+    justify-content: center;
 
-                SAVE THE DATE
+    align-items: center;
 
-            </a>
+    padding: 80px 25px;
 
-        </section>
+    border-bottom: 1px solid #e2dcd3;
 
+    position: relative;
 
+    background-size: cover;
 
-        <!-- =================================
-             COUNTDOWN
-        ================================= -->
+    background-position: center;
 
-        <section
-            class="section countdown-section">
+    background-repeat: no-repeat;
 
-            <p>
-                COUNTDOWN TO OUR DAY
-            </p>
+    background-attachment: scroll;
 
-            <h2>
-                Counting down to forever
-            </h2>
+    opacity: 0.45;
 
+    filter: blur(5px);
 
-            <div id="countdown">
+    transition:
+        opacity 0.7s ease,
+        filter 0.7s ease;
+}
 
 
-                <div>
+/* ================================
+   ACTIVE SECTION
+================================ */
 
-                    <span id="days">
-                        0
-                    </span>
+.section.active {
+    opacity: 1;
 
-                    <small>
-                        DAYS
-                    </small>
+    filter: blur(0);
+}
 
-                </div>
 
+/* First section starts active */
 
-                <div>
+/* =================================
+   INTRO SAKURA DECORATION
+================================= */
 
-                    <span id="hours">
-                        0
-                    </span>
+.intro-section .sakura {
+    position: absolute;
 
-                    <small>
-                        HOURS
-                    </small>
+    width: 180px;
 
-                </div>
+    height: auto;
 
+    pointer-events: none;
 
-                <div>
+    z-index: 1;
+}
 
-                    <span id="minutes">
-                        0
-                    </span>
 
-                    <small>
-                        MINUTES
-                    </small>
+/* TOP LEFT */
 
-                </div>
+.intro-section .sakura-top-left {
+    top: 0;
+    left: 0;
+}
 
 
-                <div>
+/* BOTTOM RIGHT */
 
-                    <span id="seconds">
-                        0
-                    </span>
+.intro-section .sakura-bottom-right {
+    bottom: 0;
+    right: 0;
+}
 
-                    <small>
-                        SECONDS
-                    </small>
 
-                </div>
+/* Keep intro text above sakura */
 
+.intro-section > p,
+.intro-section > h2 {
+    position: relative;
 
-            </div>
+    z-index: 2;
+}
 
-        </section>
 
+/* MOBILE */
 
+@media (max-width: 600px) {
 
-        <!-- =================================
-             GALLERY
-        ================================= -->
+    .intro-section .sakura {
+        width: 130px;
+    }
 
-        <section
-            class="section gallery-section">
+}
 
+#invitation > .section:first-child {
+    min-height: 100vh;
+    height: 100vh;
 
-            <p>
-                OUR MOMENTS
-            </p>
+    opacity: 1;
 
+    filter: blur(0);
 
-            <h2>
-                A little glimpse<br>
-                of our journey
-            </h2>
+    transform: translateY(0);
+}
+/* =================================
+   SAKURA ANIMATION
+================================= */
 
+.intro-section .sakura-top-left {
+    opacity: 0;
 
-            <div class="gallery">
+    transform: translate(-50px, -50px);
+}
 
+.intro-section .sakura-bottom-right {
+    opacity: 0;
 
-                <div class="gallery-item">
+    transform: translate(50px, 50px);
+}
 
-                    <img
-                        src="images/image 1.jpg"
-                        alt="Our photo"
-                        onclick="openLightbox(this.src)">
 
-                </div>
+/* When intro appears */
 
+/* =================================
+   SAKURA REPLAY ON SCROLL
+================================= */
 
-                <div class="gallery-item">
+.intro-section.active .sakura-top-left {
+    animation: sakuraTopLeft 1.4s ease forwards;
+    animation-delay: 0.2s;
+}
 
-                    <img
-                        src="images/image 2.jpg"
-                        alt="Our photo"
-                        onclick="openLightbox(this.src)">
+.intro-section.active .sakura-bottom-right {
+    animation: sakuraBottomRight 1.4s ease forwards;
+    animation-delay: 0.5s;
+}
+/* Reset when intro leaves viewport */
 
-                </div>
+.intro-section:not(.active) .sakura-top-left {
+    opacity: 0;
+    transform: translate(-50px, -50px);
+}
 
+.intro-section:not(.active) .sakura-bottom-right {
+    opacity: 0;
+    transform: translate(50px, 50px);
+}
 
-                <div class="gallery-item">
 
-                    <img
-                        src="images/image 3.jpg"
-                        alt="Our photo"
-                        onclick="openLightbox(this.src)">
+/* =================================
+   SAKURA KEYFRAMES
+================================= */
 
-                </div>
+@keyframes sakuraTopLeft {
 
+    from {
+        opacity: 0;
+        transform: translate(-50px, -50px);
+    }
 
-                <div class="gallery-item">
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
 
-                    <img
-                        src="images/image 4.jpg"
-                        alt="Our photo"
-                        onclick="openLightbox(this.src)">
+}
 
-                </div>
 
+@keyframes sakuraBottomRight {
 
-                <div class="gallery-item">
+    from {
+        opacity: 0;
+        transform: translate(50px, 50px);
+    }
 
-                    <img
-                        src="images/image 5.jpg"
-                        alt="Our photo"
-                        onclick="openLightbox(this.src)">
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
 
-                </div>
+}
+/* =================================
+   RING DECORATION
+================================= */
 
+.intro-section .ring-decoration {
+    position: absolute;
+    width: 75px;
+    height: auto;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -150px) rotate(-25deg);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+}
 
-            </div>
 
-        </section>
+/* RING ANIMATION */
 
+.intro-section.active .ring-decoration {
+    animation: ringLanding 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.3s;
+}
 
 
-        <!-- =================================
-             RSVP
-        ================================= -->
+/* RESET WHEN LEAVING */
 
-        <section
-            class="section rsvp-section">
+.intro-section:not(.active) .ring-decoration {
+    opacity: 0;
+    transform: translate(-50%, -150px) rotate(-25deg);
+}
 
 
-            <p>
-                RSVP
-            </p>
+/* KEYFRAMES */
 
+@keyframes ringLanding {
 
-            <h2>
-                Will you join us?
-            </h2>
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -150px) rotate(-25deg);
+    }
 
+    70% {
+        opacity: 1;
+        transform: translate(-50%, 8px) rotate(8deg);
+    }
 
-            <p>
-                We would love to celebrate
-                this special day with you.
-            </p>
+    85% {
+        transform: translate(-50%, -4px) rotate(-3deg);
+    }
 
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0) rotate(0deg);
+    }
 
+}
 
-            <form id="rsvpForm">
 
+/* MOBILE */
 
-                <!-- NAME -->
+@media (max-width: 600px) {
 
-                <div class="form-group">
+    .intro-section .ring-decoration {
+        width: 60px;
+        top: 20%;
+    }
 
-                    <label for="name">
-                        Your Name
-                    </label>
+}
 
+/* ================================
+   SECTION OVERLAY
+================================ */
 
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Enter your name"
-                        required>
+.section::before {
+    content: "";
 
-                </div>
+    position: absolute;
 
+    inset: 0;
 
+    background: rgba(255, 255, 255, 0.35);
 
-                <!-- ATTENDANCE -->
+    z-index: 0;
+}
 
-                <div class="form-group">
 
-                    <label>
-                        Will you attend?
-                    </label>
+/* Keep content above overlay */
 
+.section > * {
+    position: relative;
 
-                    <div class="radio-group">
+    z-index: 1;
+}
 
 
-                        <label>
+/* ================================
+   SMALL HEADING
+================================ */
 
-                            <input
-                                type="radio"
-                                name="attendance"
-                                value="yes"
-                                required>
+.section > p:first-child {
+    font-family: Arial, sans-serif;
 
-                            Joyfully Accept
+    font-size: 10px;
 
-                        </label>
+    letter-spacing: 4px;
 
+    color: #9a8977;
 
-                        <label>
+    margin-bottom: 15px;
+}
 
-                            <input
-                                type="radio"
-                                name="attendance"
-                                value="no">
 
-                            Regretfully Decline
+/* ================================
+   MAIN HEADING
+================================ */
 
-                        </label>
+.section h2 {
+    font-size: clamp(30px, 7vw, 50px);
 
+    font-weight: normal;
 
-                    </div>
+    line-height: 1.3;
 
-                </div>
+    margin: 15px 0 25px;
 
+    color: #403a35;
+}
 
 
-                <!-- PAX -->
+/* ================================
+   PARAGRAPH
+================================ */
 
-                <div class="form-group">
+.section p {
+    max-width: 500px;
 
-                    <label for="pax">
-                        Number of Guests
-                    </label>
+    font-size: 16px;
 
+    color: #6d655d;
+}
 
-                    <select
-                        id="pax"
-                        name="pax">
 
-                        <option value="1">
-                            1 Guest
-                        </option>
+/* ================================
+   EVENT SECTION
+================================ */
 
-                        <option value="2">
-                            2 Guests
-                        </option>
+.section:nth-of-type(3) {
+    background-color: #eee7dc;
+}
 
-                        <option value="3">
-                            3 Guests
-                        </option>
 
-                        <option value="4">
-                            4 Guests
-                        </option>
+.section:nth-of-type(3) h2 {
+    margin-bottom: 10px;
+}
+/* =================================
+   WEDDING RECEPTION TEXT ANIMATION
+================================ */
 
-                        <option value="5">
-                            5 Guests
-                        </option>
+.section:nth-of-type(3) > p,
+.section:nth-of-type(3) h2 {
+    opacity: 0;
+}
 
-                    </select>
 
-                </div>
+/* WEDDING RECEPTION */
 
+.section:nth-of-type(3) > p:first-child {
+    transform: translateY(-50px);
 
+    animation:
+        eventFromTop 1s ease forwards;
 
-                <!-- MESSAGE -->
+    animation-delay: 0.2s;
+}
 
-                <div class="form-group">
 
-                    <label for="message">
-                        Wishes for the Couple
-                    </label>
+/* 31 MAY 2026 */
 
+.section:nth-of-type(3) h2 {
+    transform: translateY(-50px);
 
-                    <textarea
-                        id="message"
-                        name="message"
-                        placeholder="Write your wishes..."
-                        rows="5"></textarea>
+    animation:
+        eventFromTop 1s ease forwards;
 
-                </div>
+    animation-delay: 0.6s;
+}
 
 
+/* 11:00 AM – 4:00 PM */
 
-                <!-- SUBMIT -->
+.section:nth-of-type(3) > p:nth-of-type(2) {
+    transform: translateX(-70px);
 
-                <button
-                    type="submit"
-                    class="submit-button">
+    animation:
+        eventFromLeft 1s ease forwards;
 
-                    SEND RSVP
+    animation-delay: 1s;
+}
 
-                </button>
 
+/* VICTORIA HALL */
 
-            </form>
+.section:nth-of-type(3) > p:nth-of-type(3) {
+    transform: translateX(-70px);
 
+    animation:
+        eventFromLeft 1s ease forwards;
 
+    animation-delay: 1.3s;
+}
 
-            <!-- SUCCESS MESSAGE -->
 
-            <div
-                id="successMessage"
-                class="success-message">
+/* SHAH ALAM */
 
+.section:nth-of-type(3) > p:nth-of-type(4) {
+    transform: translateX(-70px);
 
-                <h3>
-                    Thank You ❤️
-                </h3>
+    animation:
+        eventFromLeft 1s ease forwards;
 
+    animation-delay: 1.6s;
+}
 
-                <p>
-                    Your RSVP has been received.
-                </p>
 
+/* =================================
+   EVENT KEYFRAMES
+================================= */
 
-            </div>
+@keyframes eventFromTop {
 
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
 
-        </section>
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
+}
 
 
-        <!-- =================================
-             WHATSAPP
-        ================================= -->
+@keyframes eventFromLeft {
 
-        <section class="section">
+    from {
+        opacity: 0;
+        transform: translateX(-70px);
+    }
 
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 
-            <p>
-                HAVE QUESTIONS?
-            </p>
+}
 
+/* ================================
+   COUNTDOWN
+================================ */
 
-            <a
-                class="button"
-                href="https://wa.me/60123456789"
-                target="_blank">
+#countdown {
+    display: flex;
 
-                WHATSAPP US
+    justify-content: center;
 
-            </a>
+    gap: 15px;
 
+    margin-top: 30px;
 
-        </section>
+    flex-wrap: wrap;
+}
 
 
+#countdown div {
+    width: 75px;
 
-        <!-- =================================
-             FOOTER
-        ================================= -->
+    padding: 15px 5px;
 
-        <footer>
+    border: 1px solid #d1c5b5;
 
-            <p>
-                With love,
-            </p>
+    background: rgba(255, 255, 255, 0.4);
+}
 
-            <h2>
-                Izzul & Hanna
-            </h2>
 
-        </footer>
+#countdown span {
+    display: block;
 
+    font-size: 28px;
 
-    </main>
+    color: #51483f;
+}
 
 
+#countdown small {
+    display: block;
 
-    <!-- =================================
-         LIGHTBOX
-    ================================= -->
+    margin-top: 5px;
 
-    <div
-        id="lightbox"
-        class="lightbox">
+    font-family: Arial, sans-serif;
 
+    font-size: 9px;
 
-        <button
-            class="lightbox-close"
-            onclick="closeLightbox()">
+    letter-spacing: 1px;
 
-            ×
+    color: #8b8177;
+}
 
-        </button>
 
+/* ================================
+   FOOTER
+================================ */
 
-        <button
-            class="lightbox-prev"
-            onclick="previousImage()">
+footer {
+    padding: 90px 25px;
 
-            ‹
+    background: #3f3933;
 
-        </button>
+    color: white;
+}
 
 
-        <img
-            id="lightboxImage"
-            src=""
-            alt="Gallery image">
+footer p {
+    font-size: 13px;
 
+    letter-spacing: 2px;
 
-        <button
-            class="lightbox-next"
-            onclick="nextImage()">
+    opacity: 0.8;
+}
 
-            ›
 
-        </button>
+footer h2 {
+    margin-top: 15px;
 
+    font-size: 35px;
 
-        <div
-            id="lightboxCounter"
-            class="lightbox-counter">
+    font-weight: normal;
+}
 
-            1 / 5
 
-        </div>
+/* ================================
+   RSVP FORM
+================================ */
 
+.rsvp-section {
+    background:
+        url("backgrounds/rsvp.jpg");
 
-    </div>
+    background-size: cover;
 
+    background-position: center;
+}
 
 
-    <!-- =================================
-         BACKGROUND MUSIC
-    ================================= -->
+#rsvpForm {
+    width: 100%;
 
-    <audio
-        id="backgroundMusic"
-        loop>
+    max-width: 500px;
 
-        <source
-            src="music/Sweet.mp3"
-            type="audio/mpeg">
+    margin-top: 40px;
 
-    </audio>
+    text-align: left;
+}
 
 
+.form-group {
+    margin-bottom: 25px;
+}
 
-    <!-- =================================
-         MUSIC BUTTON
-    ================================= -->
 
-    <button
-        id="musicButton"
-        class="music-button">
+.form-group > label {
+    display: block;
 
-        🎵
+    margin-bottom: 8px;
 
-    </button>
+    font-family: Arial, sans-serif;
 
+    font-size: 11px;
 
+    letter-spacing: 1px;
 
-    <!-- =================================
-         SUPABASE
-    ================================= -->
+    color: #6f6254;
+}
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-    </script>
 
+input[type="text"],
+select,
+textarea {
+    width: 100%;
 
+    padding: 14px;
 
-    <!-- =================================
-         JAVASCRIPT
-    ================================= -->
+    border: 1px solid #d4c8b8;
 
-    <script src="script.js"></script>
+    background: #fffdf9;
 
+    color: #403a35;
 
-</body>
+    font-family: Georgia, serif;
 
-</html>
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #8b7965;
+}
+
+
+textarea {
+    resize: vertical;
+}
+
+
+.radio-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.radio-group label {
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    color: #5f574f;
+}
+
+
+.radio-group input {
+    margin-right: 8px;
+}
+
+
+.submit-button {
+    width: 100%;
+
+    margin-top: 5px;
+}
+
+
+.success-message {
+    display: none;
+
+    margin-top: 30px;
+
+    padding: 30px;
+
+    border: 1px solid #d4c8b8;
+
+    background: #fffdf9;
+}
+
+
+.success-message h3 {
+    font-size: 28px;
+
+    font-weight: normal;
+
+    margin-bottom: 10px;
+}
+
+
+/* ================================
+   GALLERY
+================================ */
+
+.gallery-section {
+    background:
+        url("backgrounds/gallery.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+
+.gallery {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin-top: 40px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+
+.gallery-item {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    background: #ddd;
+}
+
+
+.gallery-item img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.5s ease;
+}
+
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+
+.gallery-item:first-child {
+    grid-column: span 2;
+
+    aspect-ratio: 16 / 9;
+}
+
+
+/* ================================
+   SECTION BACKGROUNDS
+================================ */
+
+#invitation > .section:nth-child(1) {
+    background-image: url("backgrounds/intro.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#invitation > .section:nth-child(2) {
+    background-image: url("backgrounds/couple.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#invitation > .section:nth-child(3) {
+    background-image:
+        url("backgrounds/event.jpg");
+}
+
+
+.countdown-section {
+    background-image:
+        url("backgrounds/countdown.jpg");
+}
+
+
+.rsvp-section {
+    background-image:
+        url("backgrounds/rsvp.jpg");
+}
+
+
+/* ================================
+   LIGHTBOX
+================================ */
+
+.lightbox {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.94);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    padding: 30px;
+}
+
+
+.lightbox img {
+    max-width: 85%;
+    max-height: 80vh;
+
+    object-fit: contain;
+
+    border-radius: 3px;
+
+    animation: lightboxFade 0.3s ease;
+}
+
+
+@keyframes lightboxFade {
+
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+.lightbox-close {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    width: 45px;
+    height: 45px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 40px;
+
+    line-height: 40px;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+
+.lightbox-close:hover {
+    background: transparent;
+    color: #ddd;
+}
+
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 50px;
+    height: 70px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 55px;
+
+    line-height: 60px;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+
+.lightbox-prev {
+    left: 20px;
+}
+
+
+.lightbox-next {
+    right: 20px;
+}
+
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: transparent;
+    color: #ddd;
+}
+
+
+.lightbox-counter {
+    position: absolute;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.8;
+}
+
+
+/* ================================
+   MUSIC BUTTON
+================================ */
+
+.music-button {
+    position: fixed;
+
+    bottom: 25px;
+    right: 25px;
+
+    width: 52px;
+    height: 52px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.15);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 0.2s ease;
+}
+
+
+.music-button.playing {
+    animation:
+        musicSpin 3s linear infinite;
+}
+
+
+@keyframes musicSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+.music-button:hover {
+    transform: scale(1.1);
+}
+
+
+.music-button:active {
+    transform: scale(0.95);
+}
+
+
+/* ================================
+   INTRO TEXT ANIMATION
+================================ */
+
+#invitation > .section:first-child p,
+#invitation > .section:first-child h2 {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+
+/* WITH JOYFUL HEARTS */
+
+#invitation.show-invitation > .section:first-child p:first-child {
+    animation:
+        introFadeUp 1s ease forwards;
+
+    animation-delay: 0.4s;
+}
+
+
+/* WE INVITE YOU TO CELEBRATE WITH US */
+
+#invitation.show-invitation > .section:first-child h2 {
+    animation:
+        introFadeUp 1s ease forwards;
+
+    animation-delay: 0.9s;
+}
+
+
+/* JOIN US AS WE BEGIN... */
+
+#invitation.show-invitation > .section:first-child p:last-child {
+    animation:
+        introFadeUp 1s ease forwards;
+
+    animation-delay: 1.4s;
+}
+
+
+/* =================================
+   INTRO FADE UP
+================================= */
+
+@keyframes introFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .cover {
+        padding: 20px;
+    }
+
+
+    .cover::before {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+    }
+
+
+    .cover-content {
+        padding: 40px 20px;
+    }
+
+
+    .cover h1 {
+        font-size: 45px;
+    }
+
+
+    .section {
+        min-height: 65vh;
+
+        padding: 70px 20px;
+
+        filter: blur(5px);
+    }
+
+
+    #invitation > .section:first-child {
+        min-height: 100vh;
+        height: 100vh;
+    }
+
+
+    #countdown {
+        gap: 8px;
+    }
+
+
+    #countdown div {
+        width: 65px;
+    }
+
+
+    #countdown span {
+        font-size: 23px;
+    }
+
+
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+    }
+
+
+    .gallery-item:first-child {
+        grid-column: span 2;
+    }
+
+
+    .lightbox {
+        padding: 15px;
+    }
+
+
+    .lightbox img {
+        max-width: 90%;
+        max-height: 75vh;
+    }
+
+
+    .lightbox-prev,
+    .lightbox-next {
+        width: 40px;
+        font-size: 40px;
+    }
+
+
+    .lightbox-prev {
+        left: 5px;
+    }
+
+
+    .lightbox-next {
+        right: 5px;
+    }
+
+}
+/* =================================
+   COUPLE NAME ANIMATION
+================================= */
+
+.couple-section .couple-left,
+.couple-section .couple-right {
+    display: inline-block;
+    opacity: 0;
+}
+
+.couple-section .couple-left {
+    transform: translateX(-100px);
+}
+
+.couple-section .couple-right {
+    transform: translateX(100px);
+}
+
+.couple-section .couple-ampersand {
+    display: inline-block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* When couple section is visible */
+
+.couple-section.active .couple-left {
+    animation: izzulSlideIn 1s ease forwards;
+}
+
+.couple-section.active .couple-right {
+    animation: hannaSlideIn 1s ease forwards;
+    animation-delay: 0.2s;
+}
+
+
+/* Izzul */
+
+@keyframes izzulSlideIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+/* Hanna */
+
+@keyframes hannaSlideIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+/* =================================
+   COVER TEXT ANIMATION
+================================= */
+
+/* THE WEDDING OF */
+
+.cover .small-text {
+    opacity: 0;
+    transform: translateY(-40px);
+
+    animation:
+        coverFromTop 1s ease forwards;
+
+    animation-delay: 0.3s;
+}
+
+
+/* IZZUL */
+
+.cover .name-izzul {
+    display: inline-block;
+
+    opacity: 0;
+    transform: translateX(-80px);
+
+    animation:
+        coverFromLeft 1s ease forwards;
+
+    animation-delay: 0.6s;
+}
+
+
+/* & */
+
+.cover .name-ampersand {
+    display: inline-block;
+
+    opacity: 0;
+
+    animation:
+        coverAmpersand 0.8s ease forwards;
+
+    animation-delay: 0.9s;
+}
+
+
+/* HANNA */
+
+.cover .name-hanna {
+    display: inline-block;
+
+    opacity: 0;
+    transform: translateX(80px);
+
+    animation:
+        coverFromRight 1s ease forwards;
+
+    animation-delay: 0.6s;
+}
+
+
+/* DATE */
+
+.cover p:not(.small-text) {
+    opacity: 0;
+    transform: translateY(40px);
+
+    animation:
+        coverFromBottom 1s ease forwards;
+
+    animation-delay: 1.1s;
+}
+
+
+/* =================================
+   COVER KEYFRAMES
+================================= */
+
+@keyframes coverFromTop {
+
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes coverFromLeft {
+
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes coverAmpersand {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes coverFromRight {
+
+    from {
+        opacity: 0;
+        transform: translateX(80px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes coverFromBottom {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+/* =================================
+   COUNTDOWN TEXT ANIMATION
+================================= */
+
+/* COUNTDOWN TO OUR DAY */
+
+.countdown-section > p:first-child {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+.countdown-section.active > p:first-child {
+    animation:
+        countdownFromTop 1s ease forwards;
+
+    animation-delay: 0.2s;
+}
+
+
+/* COUNTING DOWN TO FOREVER */
+
+.countdown-section h2 {
+    opacity: 0;
+}
+
+.countdown-section.active h2 {
+    animation:
+        countdownFadeIn 1s ease forwards;
+
+    animation-delay: 0.7s;
+}
+
+
+/* COUNTDOWN NUMBERS + LABELS */
+
+.countdown-section #countdown {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.countdown-section.active #countdown {
+    animation:
+        countdownFromBottom 1s ease forwards;
+
+    animation-delay: 1.1s;
+}
+
+
+/* =================================
+   COUNTDOWN KEYFRAMES
+================================= */
+
+@keyframes countdownFromTop {
+
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes countdownFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes countdownFromBottom {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+/* =================================
+   GALLERY TEXT ANIMATION
+================================= */
+
+/* OUR MOMENTS */
+
+.gallery-section > p:first-child {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+.gallery-section.active > p:first-child {
+    animation:
+        galleryFromTop 1s ease forwards;
+
+    animation-delay: 0.2s;
+}
+
+
+/* A LITTLE GLIMPSE... */
+
+.gallery-section h2 {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.gallery-section.active h2 {
+    animation:
+        galleryFromBottom 1s ease forwards;
+
+    animation-delay: 0.7s;
+}
+
+
+/* =================================
+   GALLERY KEYFRAMES
+================================= */
+
+@keyframes galleryFromTop {
+
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes galleryFromBottom {
+
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+/* =================================
+   PREMIUM HAPPY COUPLE
+================================= */
+
+.couple-portraits {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 35px;
+
+    margin-top: 25px;
+
+    width: 100%;
+}
+
+
+/* PERSON */
+
+.couple-person {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    opacity: 0;
+}
+
+
+/* PHOTO FRAME */
+
+.couple-frame {
+    width: 180px;
+    height: 230px;
+    overflow: hidden;
+    border: 1px solid #d1c3b2;
+    background: #eee8df;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+.couple-frame img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* NAMES */
+
+.couple-person h3 {
+    margin-top: 15px;
+
+    font-size: 24px;
+
+    font-weight: normal;
+
+    color: #403a35;
+}
+
+
+/* AMPERSAND */
+
+.couple-ampersand {
+    font-size: 32px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #8b7965;
+
+    opacity: 0;
+}
+/* =================================
+   COUPLE SAKURA BRANCH
+================================ */
+
+.couple-section .sakura-branch,
+.couple-section .sakura-branch-flower {
+    position: absolute;
+
+    width: 320px;
+    height: auto;
+
+    top: 0;
+    right: -20px;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* BRANCH INITIAL STATE */
+
+.couple-section .sakura-branch {
+    opacity: 0;
+
+    transform: translateX(250px);
+}
+
+
+/* FLOWER INITIAL STATE */
+
+.couple-section .sakura-branch-flower {
+    opacity: 0;
+}
+
+
+/* =================================
+   BRANCH ENTER FROM RIGHT
+================================ */
+
+.couple-section.active .sakura-branch {
+    animation: branchFromRight 1.5s ease forwards;
+}
+
+
+/* =================================
+   FLOWER FADE IN AFTER BRANCH
+================================ */
+
+.couple-section.active .sakura-branch-flower {
+    animation: branchFlowerFade 2s ease forwards;
+
+    animation-delay: 1s;
+}
+
+
+/* =================================
+   KEYFRAMES
+================================ */
+
+@keyframes branchFromRight {
+
+    from {
+        opacity: 0;
+        transform: translateX(250px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes branchFlowerFade {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+/* =================================
+   COUPLE SAKURA BRANCH - LEFT
+================================ */
+
+.couple-section .sakura-branch-left,
+.couple-section .sakura-branch-flower-left {
+    position: absolute;
+
+    width: 320px;
+    height: auto;
+
+    left: -20px;
+    bottom: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* BRANCH INITIAL STATE */
+
+.couple-section .sakura-branch-left {
+    opacity: 0;
+
+    transform: translateX(-250px);
+}
+
+
+/* FLOWER INITIAL STATE */
+
+.couple-section .sakura-branch-flower-left {
+    opacity: 0;
+}
+
+
+/* BRANCH ENTER FROM LEFT */
+
+.couple-section.active .sakura-branch-left {
+    animation: branchFromLeft 1.5s ease forwards;
+}
+
+
+/* FLOWER FADE IN */
+
+.couple-section.active .sakura-branch-flower-left {
+    animation: branchFlowerFadeLeft 2s ease-in-out forwards;
+
+    animation-delay: 1.3s;
+}
+
+
+/* =================================
+   KEYFRAMES
+================================ */
+
+@keyframes branchFromLeft {
+
+    from {
+        opacity: 0;
+        transform: translateX(-250px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes branchFlowerFadeLeft {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+/* =================================
+   COUPLE CLOUD
+================================ */
+
+.couple-section .cloud-decoration {
+    position: absolute;
+
+    width: 500px;
+    height: auto;
+
+    right: -30px;
+    bottom: 0px;
+
+    opacity: 0;
+
+    transform: translate(120px, 80px);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* CLOUD ANIMATION */
+
+.couple-section.active .cloud-decoration {
+    animation: cloudFromBottomRight 1.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+
+@keyframes cloudFromBottomRight {
+
+    from {
+        opacity: 0;
+        transform: translate(120px, 80px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+}
+
+/* =================================
+   COUPLE ANIMATION
+================================= */
+
+.couple-section.active
+.couple-person-left {
+
+    animation:
+        coupleFromLeft 1s ease forwards;
+
+    animation-delay: 0.3s;
+}
+
+
+.couple-section.active
+.couple-ampersand {
+
+    animation:
+        coupleFadeIn 0.8s ease forwards;
+
+    animation-delay: 0.8s;
+}
+
+
+.couple-section.active
+.couple-person-right {
+
+    animation:
+        coupleFromRight 1s ease forwards;
+
+    animation-delay: 0.5s;
+}
+
+
+/* =================================
+   KEYFRAMES
+================================= */
+
+@keyframes coupleFromLeft {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+@keyframes coupleFromRight {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+@keyframes coupleFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .couple-portraits {
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .couple-frame {
+        width: 180px;
+        height: 230px;
+    }
+
+    .couple-person h3 {
+        font-size: 21px;
+        margin-top: 12px;
+    }
+
+    .couple-ampersand {
+        font-size: 28px;
+        margin-top: 0;
+    }
+.couple-section .sakura-branch,
+.couple-section .sakura-branch-flower {
+    width: 220px;
+    right: -10px;
+}
+
+.couple-section .cloud-decoration {
+    width: 180px;
+    right: -10px;
+}
+.couple-section {
+    overflow: hidden;
+}
+}
