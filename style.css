@@ -256,6 +256,9 @@ button:hover,
     transition:
         opacity 0.7s ease,
         filter 0.7s ease;
+
+    width: 100%;
+overflow-x: hidden;
 }
 
 
