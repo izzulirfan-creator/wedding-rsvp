@@ -199,6 +199,18 @@ button:hover,
 
     width: 100%;
 }
+/* Continuous Sakura background for Intro + Couple */
+
+#invitation {
+    position: relative;
+    isolation: isolate;
+}
+
+
+#invitation > .section:nth-child(1),
+#invitation > .section:nth-child(2) {
+    background-color: transparent;
+}
 
 
 #invitation.show-invitation {
@@ -258,6 +270,59 @@ button:hover,
 
 /* First section starts active */
 
+/* =================================
+   INTRO SAKURA DECORATION
+================================= */
+
+.intro-section .sakura {
+    position: absolute;
+
+    width: 180px;
+
+    height: auto;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* TOP LEFT */
+
+.intro-section .sakura-top-left {
+    top: 0;
+    left: 0;
+}
+
+
+/* BOTTOM RIGHT */
+
+.intro-section .sakura-bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+
+/* Keep intro text above sakura */
+
+.intro-section > p,
+.intro-section > h2 {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .intro-section .sakura {
+        width: 130px;
+    }
+
+}
+
 #invitation > .section:first-child {
     min-height: 100vh;
     height: 100vh;
@@ -268,7 +333,152 @@ button:hover,
 
     transform: translateY(0);
 }
+/* =================================
+   SAKURA ANIMATION
+================================= */
 
+.intro-section .sakura-top-left {
+    opacity: 0;
+
+    transform: translate(-50px, -50px);
+}
+
+.intro-section .sakura-bottom-right {
+    opacity: 0;
+
+    transform: translate(50px, 50px);
+}
+
+
+/* When intro appears */
+
+/* =================================
+   SAKURA REPLAY ON SCROLL
+================================= */
+
+.intro-section.active .sakura-top-left {
+    animation: sakuraTopLeft 1.4s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.intro-section.active .sakura-bottom-right {
+    animation: sakuraBottomRight 1.4s ease forwards;
+    animation-delay: 0.5s;
+}
+/* Reset when intro leaves viewport */
+
+.intro-section:not(.active) .sakura-top-left {
+    opacity: 0;
+    transform: translate(-50px, -50px);
+}
+
+.intro-section:not(.active) .sakura-bottom-right {
+    opacity: 0;
+    transform: translate(50px, 50px);
+}
+
+
+/* =================================
+   SAKURA KEYFRAMES
+================================= */
+
+@keyframes sakuraTopLeft {
+
+    from {
+        opacity: 0;
+        transform: translate(-50px, -50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+}
+
+
+@keyframes sakuraBottomRight {
+
+    from {
+        opacity: 0;
+        transform: translate(50px, 50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+}
+/* =================================
+   RING DECORATION
+================================= */
+
+.intro-section .ring-decoration {
+    position: absolute;
+    width: 75px;
+    height: auto;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -150px) rotate(-25deg);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+
+/* RING ANIMATION */
+
+.intro-section.active .ring-decoration {
+    animation: ringLanding 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+
+/* RESET WHEN LEAVING */
+
+.intro-section:not(.active) .ring-decoration {
+    opacity: 0;
+    transform: translate(-50%, -150px) rotate(-25deg);
+}
+
+
+/* KEYFRAMES */
+
+@keyframes ringLanding {
+
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -150px) rotate(-25deg);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translate(-50%, 8px) rotate(8deg);
+    }
+
+    85% {
+        transform: translate(-50%, -4px) rotate(-3deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0) rotate(0deg);
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .intro-section .ring-decoration {
+        width: 60px;
+        top: 20%;
+    }
+
+}
 
 /* ================================
    SECTION OVERLAY
@@ -741,17 +951,18 @@ textarea {
 ================================ */
 
 #invitation > .section:nth-child(1) {
-    background-image:
-        url("backgrounds/intro.jpg");
+    background-image: url("backgrounds/intro.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-
 
 #invitation > .section:nth-child(2) {
-    background-image:
-        url("backgrounds/couple.jpg");
+    background-image: url("backgrounds/couple.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-
-
 #invitation > .section:nth-child(3) {
     background-image:
         url("backgrounds/event.jpg");
@@ -1608,7 +1819,218 @@ textarea {
 
     opacity: 0;
 }
+/* =================================
+   COUPLE SAKURA BRANCH
+================================ */
 
+.couple-section .sakura-branch,
+.couple-section .sakura-branch-flower {
+    position: absolute;
+
+    width: 320px;
+    height: auto;
+
+    top: 0;
+    right: -20px;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* BRANCH INITIAL STATE */
+
+.couple-section .sakura-branch {
+    opacity: 0;
+
+    transform: translateX(250px);
+}
+
+
+/* FLOWER INITIAL STATE */
+
+.couple-section .sakura-branch-flower {
+    opacity: 0;
+}
+
+
+/* =================================
+   BRANCH ENTER FROM RIGHT
+================================ */
+
+.couple-section.active .sakura-branch {
+    animation: branchFromRight 1.5s ease forwards;
+}
+
+
+/* =================================
+   FLOWER FADE IN AFTER BRANCH
+================================ */
+
+.couple-section.active .sakura-branch-flower {
+    animation: branchFlowerFade 2s ease forwards;
+
+    animation-delay: 1s;
+}
+
+
+/* =================================
+   KEYFRAMES
+================================ */
+
+@keyframes branchFromRight {
+
+    from {
+        opacity: 0;
+        transform: translateX(250px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes branchFlowerFade {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+/* =================================
+   COUPLE SAKURA BRANCH - LEFT
+================================ */
+
+.couple-section .sakura-branch-left,
+.couple-section .sakura-branch-flower-left {
+    position: absolute;
+
+    width: 320px;
+    height: auto;
+
+    left: -20px;
+    bottom: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* BRANCH INITIAL STATE */
+
+.couple-section .sakura-branch-left {
+    opacity: 0;
+
+    transform: translateX(-250px);
+}
+
+
+/* FLOWER INITIAL STATE */
+
+.couple-section .sakura-branch-flower-left {
+    opacity: 0;
+}
+
+
+/* BRANCH ENTER FROM LEFT */
+
+.couple-section.active .sakura-branch-left {
+    animation: branchFromLeft 1.5s ease forwards;
+}
+
+
+/* FLOWER FADE IN */
+
+.couple-section.active .sakura-branch-flower-left {
+    animation: branchFlowerFadeLeft 2s ease-in-out forwards;
+
+    animation-delay: 1.3s;
+}
+
+
+/* =================================
+   KEYFRAMES
+================================ */
+
+@keyframes branchFromLeft {
+
+    from {
+        opacity: 0;
+        transform: translateX(-250px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes branchFlowerFadeLeft {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+/* =================================
+   COUPLE CLOUD
+================================ */
+
+.couple-section .cloud-decoration {
+    position: absolute;
+
+    width: 500px;
+    height: auto;
+
+    right: -30px;
+    bottom: 0px;
+
+    opacity: 0;
+
+    transform: translate(120px, 80px);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* CLOUD ANIMATION */
+
+.couple-section.active .cloud-decoration {
+    animation: cloudFromBottomRight 1.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+
+@keyframes cloudFromBottomRight {
+
+    from {
+        opacity: 0;
+        transform: translate(120px, 80px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+}
 
 /* =================================
    COUPLE ANIMATION
