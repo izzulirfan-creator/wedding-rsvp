@@ -480,8 +480,8 @@ overflow-x: hidden;
 @media (max-width: 600px) {
 
     .intro-section .ring-decoration {
-        width: 80px;
-        top: 25%;
+        width: 100px;
+        top: 30%;
     }
 
 }
