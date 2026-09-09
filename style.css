@@ -337,6 +337,7 @@ overflow-x: hidden;
     filter: blur(0);
 
     transform: translateY(0);
+    overflow: hidden;
 }
 /* =================================
    SAKURA ANIMATION
@@ -2036,6 +2037,9 @@ textarea {
     }
 
 }
+.couple-section {
+    overflow: hidden;
+}
 
 /* =================================
    COUPLE ANIMATION
@@ -2162,7 +2166,5 @@ textarea {
     width: 180px;
     right: -10px;
 }
-.couple-section {
-    overflow: hidden;
-}
+
 }
