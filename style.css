@@ -1753,14 +1753,11 @@ textarea {
 
 .couple-portraits {
     display: flex;
-
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    gap: 35px;
-
+    gap: 15px;
     margin-top: 25px;
-
     width: 100%;
 }
 
@@ -1804,12 +1801,9 @@ textarea {
 /* NAMES */
 
 .couple-person h3 {
-    margin-top: 15px;
-
+    margin: 0;
     font-size: 24px;
-
     font-weight: normal;
-
     color: #403a35;
 }
 
@@ -1818,11 +1812,8 @@ textarea {
 
 .couple-ampersand {
     font-size: 32px;
-
     font-family: Georgia, "Times New Roman", serif;
-
     color: #8b7965;
-
     opacity: 0;
 }
 /* =================================
@@ -2043,7 +2034,33 @@ textarea {
     background-position: center center;
     background-repeat: no-repeat;
 }
+.couple-section .cloud-decoration-left {
+    position: absolute;
+    width: 500px;
+    height: auto;
+    left: -30px;
+    top: 0;
+    opacity: 0;
+    transform: translate(-120px, -80px);
+    pointer-events: none;
+    z-index: 0;
+}
 
+.couple-section.active .cloud-decoration-left {
+    animation: cloudFromTopLeft 1.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes cloudFromTopLeft {
+    from {
+        opacity: 0;
+        transform: translate(-120px, -80px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
 /* =================================
    COUPLE ANIMATION
 ================================= */
@@ -2169,5 +2186,9 @@ textarea {
     width: 180px;
     right: -10px;
 }
-
+.couple-section .cloud-decoration-left {
+    width: 180px;
+    left: -10px;
+    top: 0;
+}
 }
