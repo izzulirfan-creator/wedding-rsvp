@@ -1318,6 +1318,11 @@ textarea {
 
 @media (max-width: 600px) {
 
+.intro-section .sakura-top-left,
+.intro-section .sakura-top-right {
+    width: 210px;
+
+}
     .cover {
         padding: 20px;
     }
