@@ -415,15 +415,76 @@ overflow-x: hidden;
    EXIT / RESET STATE
 ================================ */
 
-.intro-section:not(.active) .intro-flower-1,
-.intro-section:not(.active) .intro-flower-2 {
-    opacity: 0;
-    transform: translate(-50%, 150px);
+/* ================================
+   FLOWER EXIT ANIMATION
+================================ */
+
+.intro-section.exiting .intro-flower-3 {
+    animation: introFlowerFadeOut 0.7s ease forwards;
 }
 
-.intro-section:not(.active) .intro-flower-3 {
-    opacity: 0;
-    transform: translate(-50%, 0);
+.intro-section.exiting .intro-flower-2 {
+    animation: introFlowerToBottom 0.9s ease forwards;
+    animation-delay: 0.1s;
+}
+
+.intro-section.exiting .intro-flower-1 {
+    animation: introFlowerToBottom 0.9s ease forwards;
+    animation-delay: 0.25s;
+}
+/* =================================
+   FLOWER EXIT ANIMATION
+================================= */
+
+.intro-section.exiting .intro-flower-1,
+.intro-section.exiting .intro-flower-2,
+.intro-section.exiting .intro-flower-3 {
+    opacity: 1;
+}
+
+.intro-section.exiting .intro-flower-3 {
+    animation: introFlowerFadeOut 0.7s ease forwards;
+}
+
+.intro-section.exiting .intro-flower-2 {
+    animation: introFlowerToBottom 0.9s ease forwards;
+    animation-delay: 0.1s;
+}
+
+.intro-section.exiting .intro-flower-1 {
+    animation: introFlowerToBottom 0.9s ease forwards;
+    animation-delay: 0.25s;
+}
+
+/* ================================
+   EXIT KEYFRAMES
+================================ */
+
+@keyframes introFlowerToBottom {
+
+    from {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, 150px);
+    }
+
+}
+
+
+@keyframes introFlowerFadeOut {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+
 }
 
 
