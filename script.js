@@ -989,7 +989,7 @@ const sectionObserver =
                                     );
 
                                 },
-                                1200
+                                1900
                             );
 
                         }
