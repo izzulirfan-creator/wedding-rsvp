@@ -868,21 +868,49 @@ const sectionObserver =
             entries.forEach(
                 function (entry) {
 
-                    if (
-                        entry.isIntersecting
-                    ) {
+                    const section =
+                        entry.target;
 
-                        entry.target.classList.add(
+
+                    /* ==========================
+                       ENTER SECTION
+                    ========================== */
+
+                    if (entry.isIntersecting) {
+
+                        /*
+                           Cancel exit animation
+                           if user scrolls back.
+                        */
+
+                        section.classList.remove(
+                            "exiting"
+                        );
+
+
+                        /*
+                           Restart section animation.
+                        */
+
+                        section.classList.remove(
                             "active"
                         );
 
 
-                        /* ==========================
-                           REPLAY TEXT ANIMATION
-                        ========================== */
+                        section.offsetHeight;
+
+
+                        section.classList.add(
+                            "active"
+                        );
+
+
+                        /*
+                           Replay text animations.
+                        */
 
                         const animatedElements =
-                            entry.target.querySelectorAll(
+                            section.querySelectorAll(
                                 "p, h2, h3"
                             );
 
@@ -890,22 +918,10 @@ const sectionObserver =
                         animatedElements.forEach(
                             function (element) {
 
-                                /* Reset animation */
-
                                 element.style.animation =
                                     "none";
 
-
-                                /*
-                                   Force browser to
-                                   recalculate layout
-                                   before replaying.
-                                */
-
                                 element.offsetHeight;
-
-
-                                /* Replay animation */
 
                                 element.style.animation =
                                     "";
@@ -913,12 +929,70 @@ const sectionObserver =
                             }
                         );
 
+                    }
 
-                    } else {
 
-                        entry.target.classList.remove(
-                            "active"
-                        );
+                    /* ==========================
+                       EXIT SECTION
+                    ========================== */
+
+                    else {
+
+                        /*
+                           Only exit if section
+                           was previously active.
+                        */
+
+                        if (
+                            section.classList.contains(
+                                "active"
+                            )
+                        ) {
+
+                            section.classList.add(
+                                "exiting"
+                            );
+
+
+                            /*
+                               Give exit animation
+                               time to finish.
+                            */
+
+                            setTimeout(
+                                function () {
+
+                                    /*
+                                       If user has already
+                                       returned, do nothing.
+                                    */
+
+                                    if (
+                                        section.classList.contains(
+                                            "active"
+                                        )
+                                    ) {
+                                        return;
+                                    }
+
+
+                                    /*
+                                       Reset section.
+                                    */
+
+                                    section.classList.remove(
+                                        "exiting"
+                                    );
+
+                                    section.classList.remove(
+                                        "active"
+                                    );
+
+                                },
+                                1200
+                            );
+
+                        }
 
                     }
 
@@ -943,7 +1017,6 @@ sections.forEach(
 
     }
 );
-
 
 /* =================================
    MOBILE SWIPE
