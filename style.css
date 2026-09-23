@@ -359,58 +359,51 @@ overflow-x: hidden;
 
 /* FLOWER 1 - BACK */
 
-.intro-section .intro-flower-1 {
-    z-index: 1;
-
-    opacity: 0;
-
-    transform: translate(-50%, 150px);
+.intro-section .intro-flower {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
 }
 
+/* ================================
+   INITIAL STATE
+================================ */
 
-/* FLOWER 2 - MIDDLE */
+.intro-section .intro-flower-1 {
+    z-index: 1;
+    opacity: 0;
+    transform: translate(-50%, 150px);
+}
 
 .intro-section .intro-flower-2 {
     z-index: 2;
-
     opacity: 0;
-
     transform: translate(-50%, 150px);
 }
 
-
-/* FLOWER 3 - FRONT */
-
 .intro-section .intro-flower-3 {
     z-index: 3;
-
     opacity: 0;
-
     transform: translate(-50%, 0);
 }
 
 
-/* =================================
-   FLOWER ANIMATION
-================================= */
-
-/* FLOWER 1 FIRST */
+/* ================================
+   ENTER ANIMATION
+================================ */
 
 .intro-section.active .intro-flower-1 {
     animation: introFlowerFromBottom 1.3s ease forwards;
-    animation-delay: 0.3s;
+    animation-delay: .3s;
 }
-
-
-/* FLOWER 2 SECOND */
 
 .intro-section.active .intro-flower-2 {
     animation: introFlowerFromBottom 1.3s ease forwards;
-    animation-delay: 0.9s;
+    animation-delay: .9s;
 }
-
-
-/* FLOWER 3 LAST - FADE ONLY */
 
 .intro-section.active .intro-flower-3 {
     animation: introFlowerFadeIn 1.2s ease forwards;
@@ -418,12 +411,27 @@ overflow-x: hidden;
 }
 
 
-/* =================================
+/* ================================
+   EXIT / RESET STATE
+================================ */
+
+.intro-section:not(.active) .intro-flower-1,
+.intro-section:not(.active) .intro-flower-2 {
+    opacity: 0;
+    transform: translate(-50%, 150px);
+}
+
+.intro-section:not(.active) .intro-flower-3 {
+    opacity: 0;
+    transform: translate(-50%, 0);
+}
+
+
+/* ================================
    KEYFRAMES
-================================= */
+================================ */
 
 @keyframes introFlowerFromBottom {
-
     from {
         opacity: 0;
         transform: translate(-50%, 150px);
@@ -433,12 +441,9 @@ overflow-x: hidden;
         opacity: 1;
         transform: translate(-50%, 0);
     }
-
 }
 
-
 @keyframes introFlowerFadeIn {
-
     from {
         opacity: 0;
     }
@@ -446,7 +451,6 @@ overflow-x: hidden;
     to {
         opacity: 1;
     }
-
 }
 
 /* =================================
