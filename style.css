@@ -442,18 +442,27 @@ overflow-x: hidden;
     opacity: 1;
 }
 
+
+/* FLOWER 3 - FADE OUT */
+
 .intro-section.exiting .intro-flower-3 {
-    animation: introFlowerFadeOut 0.7s ease forwards;
+    animation: introFlowerFadeOut 1.1s ease forwards;
 }
+
+
+/* FLOWER 2 - MOVE DOWN */
 
 .intro-section.exiting .intro-flower-2 {
-    animation: introFlowerToBottom 0.9s ease forwards;
-    animation-delay: 0.1s;
+    animation: introFlowerToBottom 1.4s ease forwards;
+    animation-delay: 0.15s;
 }
 
+
+/* FLOWER 1 - MOVE DOWN */
+
 .intro-section.exiting .intro-flower-1 {
-    animation: introFlowerToBottom 0.9s ease forwards;
-    animation-delay: 0.25s;
+    animation: introFlowerToBottom 1.4s ease forwards;
+    animation-delay: 0.35s;
 }
 
 /* ================================
